@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* height: 100vh; */
+            margin: 0;
+            padding-bottom: 40px;
+        }
+        
+        .calculator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .input-text {
+            width: 100%;
+            height: 80px;
+            font-size: 16px;
+            border: 2px solid orange;
+            border-radius: 5px;
+            resize: none;
+            padding: 0px;
+            resize: vertical;
+        }
+        
+        .input-field {
+            width: 80%;
+            height: 120px;
+            font-size: 16px;
+            border: 2px solid orange;
+            border-radius: 5px;
+            /* resize: none; */
+            padding: 5px;
+            /* margin-bottom: 20px; */
+            overflow: auto;
+            white-space: pre;
+            line-height: 1.5;
+            resize: vertical;
+        }
+        
+        .output {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .sub-text {
+            color: orange;
+            padding-top: 0px;
+            padding-bottom: 5px;
+        }
+        
+        .table-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+        
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 1px solid transparent;
+        }
+        
+        th,
+        td {
+            border: 1px solid transparent;
+            text-align: left;
+        }
+        
+        th {
+            background-color: transparent;
+            vertical-align: top;
+        }
+        
+        td {
+            background-color: transparent;
+        }
+        /* Red color for the highlighted bits */
+        
+        .highlight {
+            color: red;
+            font-weight: bold;
+        }
+        /*New added*/
+        /* CSS code */
+        /* table tr td:first-child, */
+        
+        table tr th:first-child {
+            width: 120px;
+        }
+        
+        .binHeader {
+            padding-top: 2;
+            padding-bottom: 0;
+            border: 1px solid transparent;
+        }
+        
+        .bit {
+            width: 10px;
+            padding: 0;
+            padding-top: 2px;
+            border: 1px solid transparent;
+            border-top: 1px dashed black;
+            text-align: center;
+        }
+        
+        .group {
+            padding: 0;
+            border-left: 2px solid black;
+            border-right: 2px solid black;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .field_value {
+            color: violet;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .fieldInfo {
+            padding: 0;
+            padding-top: 2px;
+            border-top: 1px solid black;
+            border-bottom: 1px dashed black;
+            border-left: 2px solid black;
+            border-right: 2px solid black;
+            text-align: center;
+            vertical-align: top;
+            font-size: 12px;
+        }
+        
+        .bitPosition {
+            height: 10px;
+            text-align: left;
+            font-size: 10px;
+            color: orange;
+            padding: 0;
+            /* border-left: 2px solid black;
+            border-right: 2px solid black; */
+            /* text-align: left; */
+        }
+        
+        .popup-text {
+            width: 100%;
+            height: 90%;
+            font-size: 16px;
+            border: 2px solid orange;
+            border-radius: 5px;
+            /* resize: none; */
+            padding: 5px;
+            margin-bottom: 5px;
+            vertical-align: top;
+            text-align: left;
+            /* margin-bottom: 20px; */
+            white-space: pre-wrap;
+            overflow: auto;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+        
+        .popup-form {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f2f2f2;
+            padding: 20px;
+            padding-bottom: 40px;
+            border: 1px solid #ccc;
+            /* z-index: 1; */
+            width: 700px;
+            height: 500px;
+            text-align: center;
+            vertical-align: top;
+            /* Use flexbox */
+            flex-direction: column;
+            /* Stack items vertically */
+            align-items: flex-start;
+        }
+        
+        .highlighted-line {
+            background-color: yellow;
+            /* Change this to the desired highlight color */
+        }
+    </style>
+</head>
+
+<body onkeydown="handleEnter(event)">
+    <div class="calculator">
+        <h1>Calculator</h1>
+        <!-- Header -->
+        <textarea id="input_expression" rows="1" class="input-text"></textarea>
+        <label for="input_expression">Expression</label>
+        <div style="padding: 8px;"></div>
+        <div style="display: flex; align-items: center;width: 600px;">
+
+            <div id="input_field" rows="1" style="margin-right: 5px;flex: 1;width: 100%;" class="input-field" contenteditable="true"></div>
+            <div style="display: flex; flex-direction: column;">
+
+                <button style="margin:5px; padding: 5px 10px; background-color:blue; color: #fff; border: none; cursor: pointer;" onclick="showPopupForm('C_Header')">.h</button>
+                <button style="margin: 5px; padding: 5px 10px; background-color: blue; color: #fff; border: none; cursor: pointer;" onclick="showPopupForm('SV_Header')">.sv</button>
+                <button style="margin: 5px; padding: 5px 10px; background-color: blue; color: #fff; border: none; cursor: pointer;" onclick="showPopupForm('Spec')">Spec</button>
+
+            </div>
+        </div>
+        <label for="input_expression">Fields</label>
+
+        <div class="output">
+            <table>
+                <tr>
+                    <th>Decimal</th>
+                    <td id="decimalResult">0</td>
+                </tr>
+                <tr>
+                    <th>Hexadecimal</th>
+                    <td id="hexResult">0x0000_0000_0000_0000</td>
+
+            </table>
+            <table id="binary-table">
+                <tr id="fields63_32">
+                </tr>
+                <tr>
+                    <th class="binHeader">Binary</th>
+                    <td id="bit63" class="bit" style="border-left: 2px solid black;">0</td>
+                    <td id="bit62" class="bit">0</td>
+                    <td id="bit61" class="bit">0</td>
+                    <td id="bit60" class="bit">0</td>
+                    <td id="bit59" class="bit">0</td>
+                    <td id="bit58" class="bit">0</td>
+                    <td id="bit57" class="bit">0</td>
+                    <td id="bit56" class="bit" style="border-right: 2px solid black;">0</td>
+                    <td id="bit55" class="bit">0</td>
+                    <td id="bit54" class="bit">0</td>
+                    <td id="bit53" class="bit">0</td>
+                    <td id="bit52" class="bit">0</td>
+                    <td id="bit51" class="bit">0</td>
+                    <td id="bit50" class="bit">0</td>
+                    <td id="bit49" class="bit">0</td>
+                    <td id="bit48" class="bit" style="border-right: 2px solid black;">0</td>
+                    <td id="bit47" class="bit">0</td>
+                    <td id="bit46" class="bit">0</td>
+                    <td id="bit45" class="bit">0</td>
+                    <td id="bit44" class="bit">0</td>
+                    <td id="bit43" class="bit">0</td>
+                    <td id="bit42" class="bit">0</td>
+                    <td id="bit41" class="bit">0</td>
+                    <td id="bit40" class="bit" style="border-right: 2px solid black;">0</td>
+                    <td id="bit39" class="bit">0</td>
+                    <td id="bit38" class="bit">0</td>
+                    <td id="bit37" class="bit">0</td>
+                    <td id="bit36" class="bit">0</td>
+                    <td id="bit35" class="bit">0</td>
+                    <td id="bit34" class="bit">0</td>
+                    <td id="bit33" class="bit">0</td>
+                    <td id="bit32" class="bit" style="border-right: 2px solid black;">0</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td colspan="7" style="border-left: 2px solid black;" class="bitPosition">63</td>
+                    <td colspan="1" style="border-right: 2px solid black;" class="bitPosition">56</td>
+                    <td colspan="7" style="border-left: 2px solid black;" class="bitPosition">55</td>
+                    <td colspan="1" style="border-right: 2px solid black;" class="bitPosition">48</td>
+                    <td colspan="7" style="border-left: 2px solid black;" class="bitPosition">47</td>
+                    <td colspan="1" style="border-right: 2px solid black;" class="bitPosition">42</td>
+                    <td colspan="7" style="border-left: 2px solid black;" class="bitPosition">41</td>
+                    <td colspan="1" style="border-right: 2px solid black;" class="bitPosition">32</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td colspan="8" class="group">Byte7</td>
+                    <td colspan="8" class="group">Byte6</td>
+                    <td colspan="8" class="group">Byte5</td>
+                    <td colspan="8" class="group">Byte4</td>
+                </tr>
+                <tr>
+                    <!-- <td colspan="2" style="height: 20px;"> </td> -->
+                    <td style="height: 20px"></td>
+                </tr>
+                <tr id="fields31_0">
+                    <th class="binHeader"></th>
+                </tr>
+                <tr>
+                    <th class="binHeader"></th>
+                    <td id="bit31" class="bit" style="border-left: 2px solid black;">0</td>
+                    <td id="bit30" class="bit">0</td>
+                    <td id="bit29" class="bit">0</td>
+                    <td id="bit28" class="bit">0</td>
+                    <td id="bit27" class="bit">0</td>
+                    <td id="bit26" class="bit">0</td>
+                    <td id="bit25" class="bit">0</td>
+                    <td id="bit24" class="bit" style="border-right: 2px solid black;">0</td>
+                    <td id="bit23" class="bit">0</td>
+                    <td id="bit22" class="bit">0</td>
+                    <td id="bit21" class="bit">0</td>
+                    <td id="bit20" class="bit">0</td>
+                    <td id="bit19" class="bit">0</td>
+                    <td id="bit18" class="bit">0</td>
+                    <td id="bit17" class="bit">0</td>
+                    <td id="bit16" class="bit" style="border-right: 2px solid black;">0</td>
+                    <td id="bit15" class="bit">0</td>
+                    <td id="bit14" class="bit">0</td>
+                    <td id="bit13" class="bit">0</td>
+                    <td id="bit12" class="bit">0</td>
+                    <td id="bit11" class="bit">0</td>
+                    <td id="bit10" class="bit">0</td>
+                    <td id="bit9" class="bit">0</td>
+                    <td id="bit8" class="bit" style="border-right: 2px solid black;">0</td>
+                    <td id="bit7" class="bit">0</td>
+                    <td id="bit6" class="bit">0</td>
+                    <td id="bit5" class="bit">0</td>
+                    <td id="bit4" class="bit">0</td>
+                    <td id="bit3" class="bit">0</td>
+                    <td id="bit2" class="bit">0</td>
+                    <td id="bit1" class="bit">0</td>
+                    <td id="bit0" class="bit" style="border-right: 2px solid black;">0</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td colspan="7" style="border-left: 2px solid black;" class="bitPosition">31</td>
+                    <td colspan="1" style="border-right: 2px solid black;" class="bitPosition">24</td>
+                    <td colspan="7" style="border-left: 2px solid black;" class="bitPosition">23</td>
+                    <td colspan="1" style="border-right: 2px solid black;" class="bitPosition">16</td>
+                    <td colspan="7" style="border-left: 2px solid black;" class="bitPosition">15</td>
+                    <td colspan="1" style="border-right: 2px solid black;" class="bitPosition">8</td>
+                    <td colspan="7" style="border-left: 2px solid black;" class="bitPosition">7</td>
+                    <td colspan="1" style="border-right: 2px solid black;" class="bitPosition">0</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td colspan="8" class="group">Byte3</td>
+                    <td colspan="8" class="group">Byte2</td>
+                    <td colspan="8" class="group">Byte1</td>
+                    <td colspan="8" class="group">Byte0</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="popup-form" id="popupForm" style="align-items: center;">
+        <label for="form_text_output" id="popupFormLabel"></label>
+        <div id="form_text_output" class="popup-text" placeholder="Enter text"></div>
+        <button onclick="closeForm()">Done</button>
+    </div>
+    <script>
+        const a0_0x4d9c81 = a0_0x42bb;
+        (function(_0x362598, _0x2ea284) {
+            const _0x472751 = a0_0x42bb,
+                _0x37a49f = _0x362598();
+            while (!![]) {
+                try {
+                    const _0x25628e = -parseInt(_0x472751(0x16b)) / 0x1 + -parseInt(_0x472751(0x110)) / 0x2 + parseInt(_0x472751(0x161)) / 0x3 * (-parseInt(_0x472751(0x163)) / 0x4) + -parseInt(_0x472751(0x142)) / 0x5 + -parseInt(_0x472751(0x107)) / 0x6 + -parseInt(_0x472751(0x138)) / 0x7 * (-parseInt(_0x472751(0x159)) / 0x8) + parseInt(_0x472751(0x124)) / 0x9 * (parseInt(_0x472751(0x152)) / 0xa);
+                    if (_0x25628e === _0x2ea284) break;
+                    else _0x37a49f['push'](_0x37a49f['shift']());
+                } catch (_0x3f253c) {
+                    _0x37a49f['push'](_0x37a49f['shift']());
+                }
+            }
+        }(a0_0x278c, 0x7c346), document[a0_0x4d9c81(0x13b)](a0_0x4d9c81(0x12b), function() {
+            const _0x592f52 = a0_0x4d9c81;
+            var _0x21f234 = String[_0x592f52(0x117)](0x43, 0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72, 0x20, 0x28, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x20, 0x62, 0x79, 0x20, 0x4e, 0x67, 0x75, 0x79, 0x65, 0x6e, 0x20, 0x54, 0x6f, 0x6e, 0x29);
+            document[_0x592f52(0x13e)] = _0x21f234;
+        }), dragForm());
+
+        function a0_0x278c() {
+            const _0x47b434 = ['backgroundColor', 'fields31_0', 'right', 'querySelectorAll', 'toLocaleString', '</span>', 'hasOwnProperty', 'BitField', '1554192ehMwXx', 'forEach', 'Convert\x20To\x20C\x20header', 'typedef\x20struct\x20packed{\x0a', 'textContent', 'SV_Header', 'parentElement', 'fromCharCode', 'toString', 'setAttribute', 'popupFormLabel', 'input_field', '//\x20bit', 'lsbPos', 'Error:\x20\x20', '\x20:\x20', 'style', 'children', 'bit', 'decimalResult', '31276197eUIkOS', 'colspan', 'firstChild', 'focusOffset', 'createElement', 'min', 'clientX', 'DOMContentLoaded', 'split', 'left', '<span\x20class=\x22highlight\x22>', 'idx', 'mousedown', 'reverse', 'length', 'fieldInfo', '<br><span\x20class=\x22field_value\x22>', '\x22\x22>', 'map', 'join', '21oXAyEQ', '}Object_t;\x0a', 'Spec', 'addEventListener', 'bottom', 'addRange', 'title', '#form_text_output', 'getElementById', 'hexResult', '5073700qwzRJX', 'value', 'block', 'scrollTop', '\x0aInput:\x20', 'BitIndex', 'innerHTML', '<div>', 'longint', '|Register\x20Description\x0a', 'querySelector', 'floor', 'reg', 'preventDefault', '[id=\x22', 'bit\x20[', '10jucyyw', 'from', 'appendChild', 'logic', 'includes', 'sort', 'childNodes', '1266872ljolSo', '#pragma\x20pack(1)\x0atypedef\x20struct\x20{\x0a', 'removeChild', 'yellow', 'replace', 'Convert\x20To\x20Specification', 'createRange', 'test', '45417CVXIyy', '</div>', '40JerNYL', 'abs', 'fields63_32', 'buffer', 'innerText', 'top', 'getSelection', 'padEnd', '750456urmxIM', 'undefined', 'padStart', 'match', 'target', 'repeat', 'anchorNode', 'input_expression', 'fieldName', 'indexOf', 'clientY', 'lineHeight', 'removeAllRanges', 'keys', '<div\x20class=\x22highlighted-line\x22\x20title=\x22', '\x20uint32_t\x20', ':0]', 'className', 'display', 'toUpperCase', 'popupForm', 'byte', 'max', 'mousemove', 'getBoundingClientRect', 'none', '4486716akizdc'];
+            a0_0x278c = function() {
+                return _0x47b434;
+            };
+            return a0_0x278c();
+        }
+        const textOutput = document['getElementById']('input_field');
+        textOutput[a0_0x4d9c81(0x13b)](a0_0x4d9c81(0x104), highlightLine);
+
+        function highlightAndGetBitfield(_0x47ee34) {
+            const _0x44b102 = a0_0x4d9c81,
+                _0x350f7e = document[_0x44b102(0x10b)](_0x44b102(0x150) + _0x47ee34 + '\x22]');
+            let _0x4dab8c = '';
+            return _0x350f7e[_0x44b102(0x111)]((_0x1aaff4, _0x4ed163) => {
+                const _0x17a631 = _0x44b102;
+                _0x1aaff4[_0x17a631(0x120)][_0x17a631(0x108)] = _0x17a631(0x15c), _0x4dab8c = _0x1aaff4['innerText'];
+            }), _0x4dab8c;
+        }
+
+        function deemphasizeBitfield(_0x48b8e6) {
+            const _0x27706c = a0_0x4d9c81,
+                _0x4869b6 = document[_0x27706c(0x10b)]('[id=\x22' + _0x48b8e6 + '\x22]');
+            _0x4869b6[_0x27706c(0x111)]((_0x37fea6, _0x199c10) => {
+                const _0x4f1134 = _0x27706c;
+                _0x37fea6[_0x4f1134(0x120)][_0x4f1134(0x108)] = '';
+            });
+        }
+
+        function highlightLine(_0x3f6d7d) {
+            const _0x5bf588 = a0_0x4d9c81;
+
+            function _0x4fd1d0() {
+                const _0x1ae1bc = a0_0x42bb,
+                    _0x40089c = window[_0x1ae1bc(0x169)]();
+                if (_0x40089c && _0x40089c[_0x1ae1bc(0x171)]) {
+                    const _0x53ff60 = _0x40089c[_0x1ae1bc(0x171)][_0x1ae1bc(0x116)];
+                    return Array[_0x1ae1bc(0x153)](_0x53ff60[_0x1ae1bc(0x116)][_0x1ae1bc(0x121)])[_0x1ae1bc(0xf6)](_0x53ff60);
+                }
+                return -0x1;
+            }
+            const _0xe7c954 = parseFloat(getComputedStyle(textOutput)[_0x5bf588(0xf8)]),
+                _0xaab669 = _0x3f6d7d[_0x5bf588(0xf7)] + textOutput[_0x5bf588(0x145)] - textOutput[_0x5bf588(0x105)]()[_0x5bf588(0x168)],
+                _0x55ca48 = Math[_0x5bf588(0x14d)](_0xaab669 / _0xe7c954),
+                _0x4e9f97 = textOutput[_0x5bf588(0x145)],
+                _0x312973 = _0x4fd1d0(),
+                _0x19fe15 = window[_0x5bf588(0x169)]()[_0x5bf588(0x127)],
+                _0x42333b = textOutput[_0x5bf588(0x167)][_0x5bf588(0x12c)]('\x0a');
+            textOutput['innerHTML'] = _0x42333b[_0x5bf588(0x136)]((_0x26d388, _0x5b1bbc) => {
+                const _0x593234 = _0x5bf588;
+                if (_0x5b1bbc === _0x55ca48) {
+                    const _0x1f7dd3 = highlightAndGetBitfield(_0x593234(0x10f) + _0x5b1bbc);
+                    return _0x593234(0xfb) + _0x1f7dd3 + _0x593234(0x135) + _0x26d388 + _0x593234(0x162);
+                } else return deemphasizeBitfield(_0x593234(0x10f) + _0x5b1bbc), _0x593234(0x149) + _0x26d388 + '</div>';
+            })[_0x5bf588(0x137)](''), textOutput[_0x5bf588(0x145)] = _0x4e9f97;
+            const _0x41143c = _0x42333b[_0x312973];
+            if (_0x41143c && _0x19fe15 <= _0x41143c[_0x5bf588(0x132)]) {
+                const _0x4247c3 = document[_0x5bf588(0x15f)](),
+                    _0xbd984d = window[_0x5bf588(0x169)]();
+                _0x4247c3['setStart'](textOutput[_0x5bf588(0x158)][_0x312973][_0x5bf588(0x126)], _0x19fe15), _0xbd984d[_0x5bf588(0xf9)](), _0xbd984d[_0x5bf588(0x13d)](_0x4247c3);
+            }
+        }
+
+        function dragForm() {
+            const _0x2fe28b = a0_0x4d9c81;
+            let _0x55be1d = 0x0,
+                _0x15fcf4 = 0x0,
+                _0x9f5a3c = ![];
+            const _0xfa5e16 = document[_0x2fe28b(0x140)](_0x2fe28b(0x101));
+            _0xfa5e16[_0x2fe28b(0x13b)](_0x2fe28b(0x130), _0x31ccfb => {
+                const _0xcd333a = _0x2fe28b;
+                if (_0x31ccfb[_0xcd333a(0x16f)] === _0xfa5e16) {
+                    _0x9f5a3c = !![];
+                    const _0x3eb810 = _0xfa5e16['getBoundingClientRect']();
+                    _0x55be1d = _0x31ccfb[_0xcd333a(0x12a)] - (_0x3eb810[_0xcd333a(0x12d)] + _0x3eb810[_0xcd333a(0x10a)]) / 0x2, _0x15fcf4 = _0x31ccfb[_0xcd333a(0xf7)] - (_0x3eb810[_0xcd333a(0x168)] + _0x3eb810[_0xcd333a(0x13c)]) / 0x2;
+                }
+            }), document['addEventListener'](_0x2fe28b(0x104), _0x55999d => {
+                const _0x52c126 = _0x2fe28b;
+                if (_0x9f5a3c) {
+                    const _0x368b58 = _0x55999d[_0x52c126(0x12a)] - _0x55be1d,
+                        _0x4e9197 = _0x55999d[_0x52c126(0xf7)] - _0x15fcf4;
+                    _0xfa5e16[_0x52c126(0x120)][_0x52c126(0x12d)] = _0x368b58 + 'px', _0xfa5e16[_0x52c126(0x120)]['top'] = _0x4e9197 + 'px';
+                }
+            }), document['addEventListener']('mouseup', () => {
+                _0x9f5a3c = ![];
+            });
+        }
+
+        function a0_0x42bb(_0x15651b, _0x5087a4) {
+            const _0x278c75 = a0_0x278c();
+            return a0_0x42bb = function(_0x42bb16, _0x34a3c0) {
+                _0x42bb16 = _0x42bb16 - 0xf5;
+                let _0x4316dd = _0x278c75[_0x42bb16];
+                return _0x4316dd;
+            }, a0_0x42bb(_0x15651b, _0x5087a4);
+        }
+
+        function showPopupForm(_0x3925b4) {
+            const _0x2e2bd0 = a0_0x4d9c81,
+                _0x62b5df = document[_0x2e2bd0(0x140)]('popupForm');
+            _0x62b5df[_0x2e2bd0(0x120)][_0x2e2bd0(0xff)] = _0x2e2bd0(0x144);
+            const _0x161994 = _0x62b5df[_0x2e2bd0(0x14c)](_0x2e2bd0(0x13f)),
+                _0x1ee3f4 = getFields();
+            let _0x1c32ae = '';
+            const _0x3b2b96 = document[_0x2e2bd0(0x140)](_0x2e2bd0(0x11a));
+            if (_0x3925b4 == 'C_Header') {
+                _0x3b2b96[_0x2e2bd0(0x114)] = _0x2e2bd0(0x112), _0x1c32ae = _0x2e2bd0(0x15a);
+                for (const _0x2306f2 of Object[_0x2e2bd0(0xfa)](_0x1ee3f4)[_0x2e2bd0(0x157)]((_0x33858f, _0x5de702) => _0x33858f - _0x5de702)) {
+                    const _0x382633 = parseInt(_0x2306f2),
+                        _0x36cbb1 = parseInt(_0x1ee3f4[_0x2306f2][_0x2e2bd0(0x11d)]),
+                        _0x26c933 = _0x382633 - _0x36cbb1 + 0x1,
+                        _0x360472 = _0x1ee3f4[_0x2306f2][_0x2e2bd0(0xf5)]['replace'](/\s+/g, '');
+                    _0x1c32ae += (_0x2e2bd0(0xfc) + _0x360472 + _0x2e2bd0(0x11f) + _0x26c933 + ';')['padEnd'](0x2d), _0x1c32ae += _0x36cbb1 != _0x382633 ? _0x2e2bd0(0x11c) + _0x36cbb1 + '->' + _0x382633 + '\x0a' : _0x2e2bd0(0x11c) + _0x36cbb1 + '\x0a';
+                }
+                _0x1c32ae += _0x2e2bd0(0x139);
+            } else {
+                if (_0x3925b4 == _0x2e2bd0(0x115)) {
+                    _0x3b2b96[_0x2e2bd0(0x114)] = 'Convert\x20To\x20SV\x20header', _0x1c32ae = _0x2e2bd0(0x113);
+                    for (const _0x2f2c7c of Object[_0x2e2bd0(0xfa)](_0x1ee3f4)[_0x2e2bd0(0x157)]((_0x3cb029, _0x256123) => _0x256123 - _0x3cb029)) {
+                        const _0x1892a = parseInt(_0x2f2c7c),
+                            _0x96ffc4 = parseInt(_0x1ee3f4[_0x2f2c7c][_0x2e2bd0(0x11d)]),
+                            _0x370efc = _0x1892a - _0x96ffc4 + 0x1,
+                            _0x37c2c3 = _0x1ee3f4[_0x2f2c7c][_0x2e2bd0(0xf5)][_0x2e2bd0(0x15d)](/\s+/g, '');
+                        let _0x468f29 = _0x370efc == 0x1 ? _0x2e2bd0(0x122) : _0x2e2bd0(0x151) + (_0x370efc - 0x1) + _0x2e2bd0(0xfd);
+                        _0x468f29 = _0x468f29[_0x2e2bd0(0x16a)](0xb), _0x468f29 += _0x37c2c3 + ';', _0x1c32ae += _0x468f29[_0x2e2bd0(0x16a)](0x2d), _0x1c32ae += _0x96ffc4 != _0x1892a ? _0x2e2bd0(0x11c) + _0x96ffc4 + '->' + _0x1892a + '\x0a' : _0x2e2bd0(0x11c) + _0x96ffc4 + '\x0a';
+                    }
+                    _0x1c32ae += '}Object_s;\x0a';
+                } else {
+                    if (_0x3925b4 == _0x2e2bd0(0x13a)) {
+                        _0x3b2b96['textContent'] = _0x2e2bd0(0x15e), _0x1c32ae = _0x2e2bd0(0x147)[_0x2e2bd0(0x16a)](0xa) + _0x2e2bd0(0x14b), _0x1c32ae += '-' [_0x2e2bd0(0x170)](0xa) + '+' + '-' [_0x2e2bd0(0x170)](0x28) + '\x0a';
+                        for (const _0x330f27 of Object[_0x2e2bd0(0xfa)](_0x1ee3f4)[_0x2e2bd0(0x157)]((_0x143a77, _0x236d7e) => _0x143a77 - _0x236d7e)) {
+                            const _0xa90247 = parseInt(_0x330f27),
+                                _0x269a37 = parseInt(_0x1ee3f4[_0x330f27][_0x2e2bd0(0x11d)]),
+                                _0x34455c = _0xa90247 - _0x269a37 + 0x1,
+                                _0x5e87c0 = _0x1ee3f4[_0x330f27][_0x2e2bd0(0xf5)];
+                            let _0x1650bf = _0x34455c == 0x1 ? '' + _0xa90247 : _0xa90247 + ':' + _0x269a37;
+                            _0x1c32ae += _0x1650bf[_0x2e2bd0(0x16a)](0xa), _0x1c32ae += '|' + _0x5e87c0 + '\x0a';
+                        }
+                    }
+                }
+            }
+            _0x161994[_0x2e2bd0(0x167)] = _0x1c32ae;
+        }
+
+        function closeForm() {
+            const _0x1938b9 = a0_0x4d9c81;
+            var _0x292dce = document[_0x1938b9(0x140)](_0x1938b9(0x101));
+            _0x292dce[_0x1938b9(0x120)][_0x1938b9(0xff)] = _0x1938b9(0x106);
+        }
+
+        function handleEnter(_0x20cdf8) {
+            const _0x5e1af1 = a0_0x4d9c81;
+            _0x20cdf8[_0x5e1af1(0x16f)]['id'] !== _0x5e1af1(0x11b) && _0x20cdf8['key'] === 'Enter' && (calculateSum(), _0x20cdf8[_0x5e1af1(0x14f)]());
+        }
+
+        function decimalToHex(_0x3d1e21) {
+            const _0x30ab72 = a0_0x4d9c81,
+                _0x242390 = new BigUint64Array(0x1);
+            return _0x242390[0x0] = BigInt(_0x3d1e21), Array[_0x30ab72(0x153)](new Uint8Array(_0x242390[_0x30ab72(0x166)]))[_0x30ab72(0x136)](_0x372b74 => _0x372b74[_0x30ab72(0x118)](0x10)['padStart'](0x2, '0'))['reverse']()[_0x30ab72(0x137)]('')[_0x30ab72(0x100)]();
+        }
+
+        function decimalToBinary(_0x111f89) {
+            const _0x2ef748 = a0_0x4d9c81,
+                _0x46c843 = new BigUint64Array(0x1);
+            return _0x46c843[0x0] = BigInt(_0x111f89), Array['from'](new Uint8Array(_0x46c843[_0x2ef748(0x166)]))['map'](_0x21b7ee => _0x21b7ee[_0x2ef748(0x118)](0x2)[_0x2ef748(0x16d)](0x8, '0'))[_0x2ef748(0x131)]()[_0x2ef748(0x137)]('')[_0x2ef748(0x100)]();
+        }
+
+        function convertInput(_0x576c7d) {
+            const _0x30316a = a0_0x4d9c81;
+            let _0x47b85a = _0x576c7d;
+            const _0x4a2b44 = /[0-9]*'h([0-9A-Fa-f]+)/g,
+                _0x23f89e = /[0-9]*'b([0-1]+)/g,
+                _0x5d33e6 = /([0-9])_([0-9])/g;
+            return _0x47b85a = _0x47b85a['replace'](_0x4a2b44, (_0x3cc427, _0x3c0c50) => '0x' + _0x3c0c50), _0x47b85a = _0x47b85a[_0x30316a(0x15d)](_0x23f89e, (_0xdd172e, _0x4f73cb) => '0b' + _0x4f73cb), _0x47b85a = _0x47b85a[_0x30316a(0x15d)](_0x5d33e6, (_0x1093e1, _0x42ef8f, _0x387481) => _0x42ef8f + _0x387481), _0x47b85a;
+        }
+
+        function highlightBit1InBinary(_0x4c99d6) {
+            const _0x5d4f6b = a0_0x4d9c81;
+            let _0x39dcb2 = '';
+            for (let _0x112f71 = 0x0; _0x112f71 <= 0x1f; _0x112f71++) {
+                const _0x46f40d = _0x4c99d6[_0x112f71];
+                _0x39dcb2 += _0x46f40d === '1' ? _0x5d4f6b(0x12e) + _0x46f40d + _0x5d4f6b(0x10d) : _0x46f40d;
+                if ((_0x112f71 + 0x1) % 0x8 === 0x0 && _0x112f71 !== 0x1f) _0x39dcb2 += '\x20';
+                else(_0x112f71 + 0x1) % 0x4 === 0x0 && _0x112f71 !== 0x1f && (_0x39dcb2 += '_');
+            }
+            return _0x39dcb2;
+        }
+
+        function updateBitVal(_0x285e3e, _0x58cafa) {
+            const _0x6c406e = a0_0x4d9c81,
+                _0x123150 = document[_0x6c406e(0x140)](_0x285e3e);
+            _0x123150[_0x6c406e(0x148)] = _0x58cafa == 0x1 ? _0x6c406e(0x12e) + _0x58cafa + _0x6c406e(0x10d) : _0x58cafa;
+        }
+
+        function removeFields() {
+            const _0x71163e = a0_0x4d9c81;
+            let _0x5f093a = document[_0x71163e(0x140)](_0x71163e(0x165));
+            while (_0x5f093a[_0x71163e(0x126)]) {
+                _0x5f093a['removeChild'](_0x5f093a[_0x71163e(0x126)]);
+            }
+            _0x5f093a[_0x71163e(0x154)](document['createElement']('th')), _0x5f093a = document['getElementById'](_0x71163e(0x109));
+            while (_0x5f093a[_0x71163e(0x126)]) {
+                _0x5f093a[_0x71163e(0x15b)](_0x5f093a[_0x71163e(0x126)]);
+            }
+            _0x5f093a[_0x71163e(0x154)](document[_0x71163e(0x128)]('th'));
+        }
+
+        function addFields(_0x58daaf, _0xe631e3, _0x4d0837, _0x56d0c1, _0x3a12b8) {
+            const _0xf3ed21 = a0_0x4d9c81,
+                _0x2222f1 = _0x4d0837['split']('')[_0xf3ed21(0x131)]()[_0xf3ed21(0x137)](''),
+                _0x2f9de2 = _0x2222f1['substring'](_0xe631e3, _0x58daaf + 0x1)['split']('')[_0xf3ed21(0x131)]()[_0xf3ed21(0x137)](''),
+                _0x202bad = parseInt(_0x2f9de2, 0x2)[_0xf3ed21(0x118)](0x10);
+            let _0x9ced1e = '',
+                _0x2d2d69 = 0x0,
+                _0x106002 = document[_0xf3ed21(0x128)]('td');
+            const _0x3d6524 = _0x56d0c1 + _0xf3ed21(0x134) + _0x202bad + _0xf3ed21(0x10d);
+            if (_0x58daaf <= 0x1f && _0xe631e3 <= 0x1f) _0x9ced1e = document[_0xf3ed21(0x140)](_0xf3ed21(0x109)), _0x2d2d69 = _0x58daaf - _0xe631e3 + 0x1, _0x106002[_0xf3ed21(0x119)](_0xf3ed21(0x125), _0x2d2d69), _0x106002[_0xf3ed21(0xfe)] = 'fieldInfo', _0x106002['id'] = 'BitField' + _0x3a12b8, _0x106002[_0xf3ed21(0x148)] = _0x3d6524, _0x9ced1e[_0xf3ed21(0x154)](_0x106002);
+            else _0x58daaf >= 0x20 && _0xe631e3 >= 0x20 ? (_0x9ced1e = document[_0xf3ed21(0x140)](_0xf3ed21(0x165)), _0x2d2d69 = _0x58daaf - _0xe631e3 + 0x1, _0x106002[_0xf3ed21(0x119)](_0xf3ed21(0x125), _0x2d2d69), _0x106002[_0xf3ed21(0xfe)] = 'fieldInfo', _0x106002['id'] = _0xf3ed21(0x10f) + _0x3a12b8, _0x106002[_0xf3ed21(0x148)] = _0x3d6524, _0x9ced1e[_0xf3ed21(0x154)](_0x106002)) : (_0x9ced1e = document[_0xf3ed21(0x140)](_0xf3ed21(0x165)), _0x2d2d69 = _0x58daaf - 0x20 + 0x1, _0x106002['setAttribute'](_0xf3ed21(0x125), _0x2d2d69), _0x106002[_0xf3ed21(0xfe)] = _0xf3ed21(0x133), _0x106002['id'] = 'BitField' + _0x3a12b8, _0x106002[_0xf3ed21(0x148)] = _0x3d6524, _0x9ced1e[_0xf3ed21(0x154)](_0x106002), _0x106002 = document['createElement']('td'), _0x9ced1e = document[_0xf3ed21(0x140)]('fields31_0'), _0x2d2d69 = 0x1f - _0xe631e3 + 0x1, _0x106002[_0xf3ed21(0x119)](_0xf3ed21(0x125), _0x2d2d69), _0x106002[_0xf3ed21(0xfe)] = 'fieldInfo', _0x106002['id'] = _0xf3ed21(0x10f) + _0x3a12b8, _0x106002[_0xf3ed21(0x148)] = _0x3d6524, _0x9ced1e['appendChild'](_0x106002));
+        }
+
+        function getFields() {
+            const _0x105c2f = a0_0x4d9c81,
+                _0x274c24 = document[_0x105c2f(0x140)]('input_field');
+            inputVal = _0x274c24[_0x105c2f(0x167)];
+            const _0x56f667 = {};
+            let _0x1c1e77;
+            inputVal[_0x105c2f(0x12c)](/\n/)[_0x105c2f(0x111)]((_0x59ed28, _0x4c5c5e) => {
+                const _0x4447ae = _0x105c2f;
+                _0x59ed28 = _0x59ed28[_0x4447ae(0x15d)](/\s+[-:]\s+\w.*$/, '');
+                let _0x1daa1d = /^\s*(\d+)\s*[:-]\s*(\d+)[\s\|]+(.*)/;
+                if (_0x1daa1d[_0x4447ae(0x160)](_0x59ed28)) {
+                    const _0xc42318 = parseInt(RegExp['$1']),
+                        _0x4ee032 = parseInt(RegExp['$2']),
+                        _0x5da532 = RegExp['$3'][_0x4447ae(0x15d)](/[-]+/g, '_'),
+                        _0x3fdc0c = Math[_0x4447ae(0x103)](_0xc42318, _0x4ee032),
+                        _0x52c07f = Math[_0x4447ae(0x129)](_0xc42318, _0x4ee032);
+                    _0x56f667[_0x3fdc0c] = {}, _0x56f667[_0x3fdc0c][_0x4447ae(0x11d)] = _0x52c07f, _0x56f667[_0x3fdc0c][_0x4447ae(0xf5)] = _0x5da532, _0x56f667[_0x3fdc0c][_0x4447ae(0x12f)] = _0x4c5c5e;
+                    return;
+                }
+                _0x1daa1d = /^\s*(\d+)[\s|]+([\w ]+)\b/;
+                if (_0x1daa1d[_0x4447ae(0x160)](_0x59ed28)) {
+                    const _0x5aaf74 = parseInt(RegExp['$1']),
+                        _0x23c2e4 = RegExp['$2'];
+                    _0x56f667[_0x5aaf74] = {}, _0x56f667[_0x5aaf74][_0x4447ae(0x11d)] = _0x5aaf74, _0x56f667[_0x5aaf74][_0x4447ae(0xf5)] = _0x23c2e4, _0x56f667[_0x5aaf74][_0x4447ae(0x12f)] = _0x4c5c5e;
+                    return;
+                }
+                _0x1daa1d = /(\bchar\b|\buint8_t\b|\bsigned char\b|\bint8_t\b|\bunsigned short\b|\buint16_t\b|\bshort\b|\bint16_t\b|\bunsigned int\b|\buint32_t\b|\bint\b|\bint32_t\b|\bunsigned long long\b|\buint64_t\b|\blong long\b|\bint64_t\b)\s+(\w+)\s*:\s*(\d+)\s*/;
+                if (_0x1daa1d[_0x4447ae(0x160)](_0x59ed28)) {
+                    if (typeof _0x1c1e77 === _0x4447ae(0x16c)) _0x1c1e77 = 0x0;
+                    const _0x5bc1a1 = _0x1c1e77,
+                        _0x41bdfd = parseInt(RegExp['$3']),
+                        _0xdbdf12 = _0x5bc1a1 + _0x41bdfd - 0x1,
+                        _0x31cdf5 = RegExp['$2'];
+                    _0x56f667[_0xdbdf12] = {}, _0x56f667[_0xdbdf12]['lsbPos'] = _0x5bc1a1, _0x56f667[_0xdbdf12][_0x4447ae(0xf5)] = _0x31cdf5, _0x56f667[_0xdbdf12][_0x4447ae(0x12f)] = _0x4c5c5e, _0x1c1e77 += _0x41bdfd;
+                    return;
+                }
+                _0x1daa1d = /(\bbit\b|\breg\b|\blogic\b)\s*\[\s*(\d+)\s*:(\d+)\s*\]\s*(\w+)\s*/;
+                if (_0x1daa1d[_0x4447ae(0x160)](_0x59ed28)) {
+                    if (typeof _0x1c1e77 === _0x4447ae(0x16c)) _0x1c1e77 = 0x0;
+                    const _0x330a01 = Math[_0x4447ae(0x164)](parseInt(RegExp['$3']) - parseInt(RegExp['$2'])) + 0x1,
+                        _0x28a436 = _0x1c1e77 - _0x330a01,
+                        _0x55efbe = _0x28a436 + _0x330a01 - 0x1,
+                        _0x124ac5 = RegExp['$4'];
+                    _0x56f667[_0x55efbe] = {}, _0x56f667[_0x55efbe]['lsbPos'] = _0x28a436, _0x56f667[_0x55efbe][_0x4447ae(0xf5)] = _0x124ac5, _0x56f667[_0x55efbe][_0x4447ae(0x12f)] = _0x4c5c5e, _0x1c1e77 -= _0x330a01;
+                    return;
+                }
+                _0x1daa1d = /^\s*(\bbit\b|\breg\b|\blogic\b|\bbyte\b|\bshortint\b|\bint\b|\blongint\b|\binteger\b)\s+(\w+)\s*/;
+                if (_0x1daa1d['test'](_0x59ed28)) {
+                    if (typeof _0x1c1e77 === 'undefined') _0x1c1e77 = 0x0;
+                    const _0x13145d = RegExp['$1'],
+                        _0x2f4d57 = _0x13145d['includes'](_0x4447ae(0x122)) || _0x13145d['includes'](_0x4447ae(0x155)) || _0x13145d[_0x4447ae(0x156)](_0x4447ae(0x14e)) ? 0x1 : _0x13145d[_0x4447ae(0x156)](_0x4447ae(0x102)) ? 0x8 : _0x13145d['includes']('shortint') ? 0x10 : _0x13145d['includes'](_0x4447ae(0x14a)) ? 0x40 : 0x20,
+                        _0x3f925c = _0x1c1e77 - _0x2f4d57,
+                        _0x1447a3 = _0x3f925c + _0x2f4d57 - 0x1,
+                        _0x15f117 = RegExp['$2'];
+                    _0x56f667[_0x1447a3] = {}, _0x56f667[_0x1447a3][_0x4447ae(0x11d)] = _0x3f925c, _0x56f667[_0x1447a3][_0x4447ae(0xf5)] = _0x15f117, _0x56f667[_0x1447a3][_0x4447ae(0x12f)] = _0x4c5c5e, _0x1c1e77 -= _0x2f4d57;
+                    return;
+                }
+            });
+            if (_0x1c1e77 < 0x0) {
+                const _0x39ff35 = Math[_0x105c2f(0x164)](_0x1c1e77),
+                    _0x53f11b = Object[_0x105c2f(0xfa)](_0x56f667);
+                for (const _0x747252 of _0x53f11b) {
+                    const _0x2b5284 = parseInt(_0x747252) + _0x39ff35;
+                    _0x56f667[_0x747252][_0x105c2f(0x11d)] += _0x39ff35, _0x56f667[_0x2b5284] = _0x56f667[_0x747252], delete _0x56f667[_0x747252];
+                }
+            }
+            let _0x4459e6 = 0x3f,
+                _0x1cd8d0 = 0x0;
+            const _0x1119e7 = Object[_0x105c2f(0xfa)](_0x56f667)[_0x105c2f(0x157)]((_0x3910cd, _0x54b1c6) => _0x54b1c6 - _0x3910cd);
+            if (_0x1119e7['length'] == 0x0) return _0x56f667;
+            let _0x1ae64b = -0x1,
+                _0x12b666 = 0x0;
+            while (_0x4459e6 >= 0x0) {
+                _0x56f667[_0x105c2f(0x10e)](_0x4459e6) == 0x0 ? (_0x12b666 = _0x1ae64b <= _0x1119e7[_0x105c2f(0x132)] - 0x2 ? parseInt(_0x1119e7[_0x1ae64b + 0x1]) + 0x1 : 0x0, _0x56f667[_0x4459e6] = {}, _0x56f667[_0x4459e6]['lsbPos'] = parseInt(_0x12b666), _0x56f667[_0x4459e6][_0x105c2f(0xf5)] = 'RSV' + _0x1cd8d0, _0x1cd8d0++) : (_0x12b666 = _0x56f667[_0x4459e6][_0x105c2f(0x11d)], _0x1ae64b++), _0x4459e6 = parseInt(_0x12b666) - 0x1;
+            }
+            return _0x56f667;
+        }
+
+        function calculateSum() {
+            const _0x19ebac = a0_0x4d9c81;
+            let _0x367864 = '';
+            try {
+                const _0x10f3b6 = document[_0x19ebac(0x140)](_0x19ebac(0x172));
+                _0x367864 = _0x10f3b6[_0x19ebac(0x143)], _0x367864 = convertInput(_0x367864);
+                const _0x4c0be7 = parseInt(eval(_0x367864)),
+                    _0x2bbad5 = document[_0x19ebac(0x140)](_0x19ebac(0x123));
+                _0x2bbad5['textContent'] = '' + _0x4c0be7[_0x19ebac(0x10c)]();
+                const _0x4e9754 = document[_0x19ebac(0x140)](_0x19ebac(0x141)),
+                    _0x3c11ac = decimalToHex(_0x4c0be7)[_0x19ebac(0x16e)](/.{1,4}/g)[_0x19ebac(0x137)]('_');;
+                _0x4e9754['textContent'] = '0x' + _0x3c11ac;
+                const _0x13627f = decimalToBinary(_0x4c0be7);
+                _0x13627f[_0x19ebac(0x12c)]('')['reverse']()[_0x19ebac(0x136)]((_0x11cddd, _0x54691b) => updateBitVal(_0x19ebac(0x122) + _0x54691b, _0x11cddd)), removeFields(), myfieldDict = getFields();
+                for (const _0x2be681 of Object[_0x19ebac(0xfa)](myfieldDict)[_0x19ebac(0x157)]((_0x253b92, _0x560c22) => _0x560c22 - _0x253b92)) {
+                    const _0x1ffba2 = _0x2be681,
+                        _0x448793 = myfieldDict[_0x2be681][_0x19ebac(0x11d)],
+                        _0x20e20d = myfieldDict[_0x2be681][_0x19ebac(0xf5)],
+                        _0x2d29f1 = myfieldDict[_0x2be681][_0x19ebac(0x12f)];
+                    addFields(parseInt(_0x1ffba2), parseInt(_0x448793), _0x13627f, _0x20e20d, _0x2d29f1);
+                }
+            } catch (_0xe31564) {
+                alert(_0x19ebac(0x11e) + _0xe31564 + _0x19ebac(0x146) + _0x367864);
+            }
+        }
+    </script>
+</body>
+
+</html>
