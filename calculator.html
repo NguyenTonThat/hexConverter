@@ -379,449 +379,355 @@
         <button onclick="closeForm()">Done</button>
     </div>
     <script>
-        // const funcDis = 1;
-        if (!/iPhone|iPod|iPad|Android/.test(navigator.userAgent)) {
-            displayPageName();
-            dragForm();
-            highlightFields();
-        }
+        const a0_0x2a60f6 = a0_0xa052;
+        (function(_0x133769, _0xe98188) {
+            const _0x100d72 = a0_0xa052,
+                _0x503193 = _0x133769();
+            while (!![]) {
+                try {
+                    const _0x61b234 = -parseInt(_0x100d72(0x189)) / 0x1 * (parseInt(_0x100d72(0x17e)) / 0x2) + -parseInt(_0x100d72(0x1a0)) / 0x3 * (parseInt(_0x100d72(0x17f)) / 0x4) + -parseInt(_0x100d72(0x170)) / 0x5 * (-parseInt(_0x100d72(0x140)) / 0x6) + parseInt(_0x100d72(0x131)) / 0x7 * (-parseInt(_0x100d72(0x18a)) / 0x8) + parseInt(_0x100d72(0x16a)) / 0x9 * (-parseInt(_0x100d72(0x129)) / 0xa) + -parseInt(_0x100d72(0x14a)) / 0xb + parseInt(_0x100d72(0x15b)) / 0xc * (parseInt(_0x100d72(0x12b)) / 0xd);
+                    if (_0x61b234 === _0xe98188) break;
+                    else _0x503193['push'](_0x503193['shift']());
+                } catch (_0x3615ba) {
+                    _0x503193['push'](_0x503193['shift']());
+                }
+            }
+        }(a0_0x131e, 0x5de43));
+        !/iPhone|iPod|iPad|Android/ [a0_0x2a60f6(0x145)](navigator[a0_0x2a60f6(0x154)]) && (displayPageName(), dragForm(), highlightFields());
 
         function displayPageName() {
-            document.addEventListener("DOMContentLoaded", function() {
-                var pageTitle = String.fromCharCode(
-                    67, 97, 108, 99, 117, 108, 97, 116, 111, 114, 32, 40, 67, 114, 101, 97, 116, 101, 100, 32, 98, 121, 32,
-                    78, 103, 117, 121, 101, 110, 32, 84, 111, 110, 41
-                );
-                document.title = pageTitle;
+            document['addEventListener']('DOMContentLoaded', function() {
+                const _0x733f68 = a0_0xa052;
+                var _0x192ce9 = String[_0x733f68(0x172)](0x43, 0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72, 0x20, 0x28, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x20, 0x62, 0x79, 0x20, 0x4e, 0x67, 0x75, 0x79, 0x65, 0x6e, 0x20, 0x54, 0x6f, 0x6e, 0x29);
+                document['title'] = _0x192ce9;
             });
         }
 
         function highlightFields() {
-            const textOutput = document.getElementById("input_field");
+            const _0x2c9d4e = a0_0x2a60f6,
+                _0x4a715b = document[_0x2c9d4e(0x182)](_0x2c9d4e(0x191));
+            _0x4a715b[_0x2c9d4e(0x16d)](_0x2c9d4e(0x19e), _0x4c7db5);
 
-            textOutput.addEventListener("mousemove", highlightLine);
+            function _0x5958a3(_0x3e540d) {
+                const _0x1a8cb1 = _0x2c9d4e,
+                    _0x4dee13 = document[_0x1a8cb1(0x16b)](_0x1a8cb1(0x15d) + _0x3e540d + '\x22]');
+                let _0x580407 = '';
+                return _0x4dee13[_0x1a8cb1(0x149)]((_0x4883b0, _0x3c4729) => {
+                    const _0x2f1e1e = _0x1a8cb1;
+                    _0x4883b0[_0x2f1e1e(0x136)]['backgroundColor'] = _0x2f1e1e(0x14f), _0x580407 = _0x4883b0[_0x2f1e1e(0x199)];
+                }), _0x580407;
+            }
 
-            function highlightAndGetBitfield(fieldId) {
-                const allElements = document.querySelectorAll(`[id="${fieldId}"]`);
-                let fieldVal = ""
-                allElements.forEach((ele, idx) => {
-                    ele.style.backgroundColor = 'yellow';
-                    fieldVal = ele.innerText;
+            function _0x1902cb(_0x2ac9bb) {
+                const _0x156986 = _0x2c9d4e,
+                    _0x2da77e = document[_0x156986(0x16b)](_0x156986(0x15d) + _0x2ac9bb + '\x22]');
+                _0x2da77e[_0x156986(0x149)]((_0x5ded6d, _0xf704a6) => {
+                    const _0x3eed4d = _0x156986;
+                    _0x5ded6d['style'][_0x3eed4d(0x162)] = '';
                 });
-                return fieldVal;
             }
 
-            function deemphasizeBitfield(fieldId) {
-                const allElements = document.querySelectorAll(`[id="${fieldId}"]`);
-                allElements.forEach((ele, idx) => {
-                    ele.style.backgroundColor = '';
-                });
+            function _0x4c7db5(_0x4012a1) {
+                const _0x426770 = _0x2c9d4e;
 
-            }
-
-
-
-            function highlightLine(event) {
-                function getCurrentCursorLineIndex() {
-                    const selection = window.getSelection();
-                    if (selection && selection.anchorNode) {
-                        const cursorLine = selection.anchorNode.parentElement;
-                        return Array.from(cursorLine.parentElement.children).indexOf(cursorLine);
+                function _0x411863() {
+                    const _0xc43ce1 = a0_0xa052,
+                        _0x2bc59a = window[_0xc43ce1(0x186)]();
+                    if (_0x2bc59a && _0x2bc59a[_0xc43ce1(0x166)]) {
+                        const _0x52bde4 = _0x2bc59a['anchorNode']['parentElement'];
+                        return Array[_0xc43ce1(0x18b)](_0x52bde4[_0xc43ce1(0x19b)][_0xc43ce1(0x163)])['indexOf'](_0x52bde4);
                     }
-                    return -1;
+                    return -0x1;
                 }
-                const lineHeight = parseFloat(getComputedStyle(textOutput).lineHeight);
-                const mouseY = event.clientY + textOutput.scrollTop - textOutput.getBoundingClientRect().top;
-                const hoveredLineIndex = Math.floor(mouseY / lineHeight);
-                const currentScrollTop = textOutput.scrollTop;
-                const cursorIndex = getCurrentCursorLineIndex();
-                const cursorOffset = window.getSelection().focusOffset;
-                const lines = textOutput.innerText.split('\n');
-                textOutput.innerHTML = lines.map((line, index) => {
-                    if (index === hoveredLineIndex) {
-                        const fieldVal = highlightAndGetBitfield(`BitField${index}`);
-                        return `<div class="highlighted-line" title="${fieldVal}"">${line}</div>`;
-                    } else {
-                        deemphasizeBitfield(`BitField${index}`);
-                        return `<div>${line}</div>`;
-                    }
-                }).join('');
-                // Restore the scroll position
-                textOutput.scrollTop = currentScrollTop;
-
-                // Restore the cursor position within the hovered line
-                const restoredLine = lines[cursorIndex];
-                if (restoredLine && cursorOffset <= restoredLine.length) {
-                    const newRange = document.createRange();
-                    const newSelection = window.getSelection();
-                    newRange.setStart(textOutput.childNodes[cursorIndex].firstChild, cursorOffset);
-                    newSelection.removeAllRanges();
-                    newSelection.addRange(newRange);
+                const _0x6941e0 = parseFloat(getComputedStyle(_0x4a715b)[_0x426770(0x190)]),
+                    _0x532cc2 = _0x4012a1[_0x426770(0x183)] + _0x4a715b[_0x426770(0x194)] - _0x4a715b[_0x426770(0x12a)]()[_0x426770(0x178)],
+                    _0xbdd16 = Math[_0x426770(0x18c)](_0x532cc2 / _0x6941e0),
+                    _0x2df7c8 = _0x4a715b['scrollTop'],
+                    _0x247973 = _0x411863(),
+                    _0x41d98c = window[_0x426770(0x186)]()[_0x426770(0x12e)],
+                    _0xbc4625 = _0x4a715b[_0x426770(0x199)][_0x426770(0x13c)]('\x0a');
+                _0x4a715b[_0x426770(0x13d)] = _0xbc4625[_0x426770(0x187)]((_0x4e49bc, _0x597fc8) => {
+                    const _0x426a8c = _0x426770;
+                    if (_0x597fc8 === _0xbdd16) {
+                        const _0x23563d = _0x5958a3('BitField' + _0x597fc8);
+                        return _0x426a8c(0x142) + _0x23563d + _0x426a8c(0x141) + _0x4e49bc + _0x426a8c(0x157);
+                    } else return _0x1902cb(_0x426a8c(0x13e) + _0x597fc8), _0x426a8c(0x18d) + _0x4e49bc + _0x426a8c(0x157);
+                })[_0x426770(0x14b)](''), _0x4a715b[_0x426770(0x194)] = _0x2df7c8;
+                const _0x4e6903 = _0xbc4625[_0x247973];
+                if (_0x4e6903 && _0x41d98c <= _0x4e6903['length']) {
+                    const _0x1a9547 = document[_0x426770(0x175)](),
+                        _0x7a94df = window[_0x426770(0x186)]();
+                    _0x1a9547[_0x426770(0x174)](_0x4a715b[_0x426770(0x160)][_0x247973][_0x426770(0x13a)], _0x41d98c), _0x7a94df[_0x426770(0x19c)](), _0x7a94df['addRange'](_0x1a9547);
                 }
-
             }
+        }
+
+        function a0_0xa052(_0x2a78c6, _0x4cfe02) {
+            const _0x131ebf = a0_0x131e();
+            return a0_0xa052 = function(_0xa052da, _0x128cfb) {
+                _0xa052da = _0xa052da - 0x127;
+                let _0xbeda1d = _0x131ebf[_0xa052da];
+                return _0xbeda1d;
+            }, a0_0xa052(_0x2a78c6, _0x4cfe02);
         }
 
         function dragForm() {
-            let offsetX = 0;
-            let offsetY = 0;
-            let isDragging = false;
-
-            const popupForm = document.getElementById("popupForm");
-
-            popupForm.addEventListener("mousedown", (e) => {
-                if (e.target === popupForm) {
-                    isDragging = true;
-                    const rect = popupForm.getBoundingClientRect();
-                    offsetX = e.clientX - (rect.left + rect.right) / 2;
-                    offsetY = e.clientY - (rect.top + rect.bottom) / 2;
+            const _0x3e6773 = a0_0x2a60f6;
+            let _0x5537ed = 0x0,
+                _0x4f8e74 = 0x0,
+                _0x5a2baa = ![];
+            const _0x58799b = document[_0x3e6773(0x182)](_0x3e6773(0x164));
+            _0x58799b[_0x3e6773(0x16d)]('mousedown', _0x43ddf8 => {
+                const _0x7adf3b = _0x3e6773;
+                if (_0x43ddf8[_0x7adf3b(0x198)] === _0x58799b) {
+                    _0x5a2baa = !![];
+                    const _0x124f19 = _0x58799b[_0x7adf3b(0x12a)]();
+                    _0x5537ed = _0x43ddf8[_0x7adf3b(0x16f)] - (_0x124f19['left'] + _0x124f19[_0x7adf3b(0x15c)]) / 0x2, _0x4f8e74 = _0x43ddf8['clientY'] - (_0x124f19['top'] + _0x124f19['bottom']) / 0x2;
                 }
-            });
-
-            document.addEventListener("mousemove", (e) => {
-                if (isDragging) {
-                    const newX = e.clientX - offsetX;
-                    const newY = e.clientY - offsetY;
-                    popupForm.style.left = `${newX}px`;
-                    popupForm.style.top = `${newY}px`;
+            }), document[_0x3e6773(0x16d)](_0x3e6773(0x19e), _0x29d7d2 => {
+                const _0x465a27 = _0x3e6773;
+                if (_0x5a2baa) {
+                    const _0x3f82cc = _0x29d7d2[_0x465a27(0x16f)] - _0x5537ed,
+                        _0x5082f2 = _0x29d7d2[_0x465a27(0x183)] - _0x4f8e74;
+                    _0x58799b[_0x465a27(0x136)][_0x465a27(0x18f)] = _0x3f82cc + 'px', _0x58799b[_0x465a27(0x136)]['top'] = _0x5082f2 + 'px';
                 }
+            }), document[_0x3e6773(0x16d)](_0x3e6773(0x165), () => {
+                _0x5a2baa = ![];
             });
-
-            document.addEventListener("mouseup", () => {
-                isDragging = false;
-            });
-
         }
 
-
-        function showPopupForm(input) {
-            const popupForm = document.getElementById("popupForm");
-            popupForm.style.display = "block";
-            const inputField = popupForm.querySelector("#form_text_output");
-            // inputField.value = "abcded";
-            const myfieldDict = getFields();
-            let content = ""
-            const labelElement = document.getElementById("popupFormLabel");
-            if (input == "C_Header") {
-                labelElement.textContent = "Convert To C header";
-                content = "#pragma pack(1)\ntypedef struct {\n";
-                for (const key of Object.keys(myfieldDict).sort((a, b) => a - b)) {
-                    const msb = parseInt(key);
-                    const lsb = parseInt(myfieldDict[key]['lsbPos']);
-                    const size = msb - lsb + 1;
-                    const fieldName = myfieldDict[key]['fieldName'].replace(/\s+/g, "");
-                    content += ` uint32_t ${fieldName} : ${size};`.padEnd(45);
-                    content += (lsb != msb) ? `// bit${lsb}->${msb}\n` : `// bit${lsb}\n`;
-
+        function showPopupForm(_0x43c603) {
+            const _0xf34d7e = a0_0x2a60f6,
+                _0x6859d6 = document['getElementById'](_0xf34d7e(0x164));
+            _0x6859d6[_0xf34d7e(0x136)][_0xf34d7e(0x17c)] = _0xf34d7e(0x168);
+            const _0x3f8347 = _0x6859d6[_0xf34d7e(0x176)](_0xf34d7e(0x171)),
+                _0x2fa17d = getFields();
+            let _0x4bae23 = '';
+            const _0x23953d = document['getElementById'](_0xf34d7e(0x173));
+            if (_0x43c603 == 'C_Header') {
+                _0x23953d[_0xf34d7e(0x138)] = 'Convert\x20To\x20C\x20header', _0x4bae23 = _0xf34d7e(0x192);
+                for (const _0x16d710 of Object[_0xf34d7e(0x184)](_0x2fa17d)['sort']((_0x1f8826, _0x4161bb) => _0x1f8826 - _0x4161bb)) {
+                    const _0x2ad0f1 = parseInt(_0x16d710),
+                        _0x4b6e5e = parseInt(_0x2fa17d[_0x16d710]['lsbPos']),
+                        _0x3c857b = _0x2ad0f1 - _0x4b6e5e + 0x1,
+                        _0x1ed347 = _0x2fa17d[_0x16d710]['fieldName']['replace'](/\s+/g, '');
+                    _0x4bae23 += ('\x20uint32_t\x20' + _0x1ed347 + '\x20:\x20' + _0x3c857b + ';')['padEnd'](0x2d), _0x4bae23 += _0x4b6e5e != _0x2ad0f1 ? _0xf34d7e(0x146) + _0x4b6e5e + '->' + _0x2ad0f1 + '\x0a' : _0xf34d7e(0x146) + _0x4b6e5e + '\x0a';
                 }
-                content += `}Object_t;\n`;
-            } else if (input == "SV_Header") {
-                labelElement.textContent = "Convert To SV header";
-                content = "typedef struct packed{\n";
-                for (const key of Object.keys(myfieldDict).sort((a, b) => b - a)) {
-                    const msb = parseInt(key);
-                    const lsb = parseInt(myfieldDict[key]['lsbPos']);
-                    const size = msb - lsb + 1;
-                    const fieldName = myfieldDict[key]['fieldName'].replace(/\s+/g, "");
-                    let fieldDeclare = (size == 1) ? "bit" : `bit [${size-1}:0]`;
-                    fieldDeclare = fieldDeclare.padEnd(11);
-                    fieldDeclare += `${fieldName};`;
-                    content += fieldDeclare.padEnd(45);
-                    content += (lsb != msb) ? `// bit${lsb}->${msb}\n` : `// bit${lsb}\n`;
-
+                _0x4bae23 += _0xf34d7e(0x195);
+            } else {
+                if (_0x43c603 == _0xf34d7e(0x179)) {
+                    _0x23953d[_0xf34d7e(0x138)] = 'Convert\x20To\x20SV\x20header', _0x4bae23 = _0xf34d7e(0x144);
+                    for (const _0x3537f3 of Object[_0xf34d7e(0x184)](_0x2fa17d)[_0xf34d7e(0x151)]((_0xe4c012, _0x29f27f) => _0x29f27f - _0xe4c012)) {
+                        const _0x57df15 = parseInt(_0x3537f3),
+                            _0x563168 = parseInt(_0x2fa17d[_0x3537f3][_0xf34d7e(0x12f)]),
+                            _0x5611f8 = _0x57df15 - _0x563168 + 0x1,
+                            _0x7e2916 = _0x2fa17d[_0x3537f3]['fieldName']['replace'](/\s+/g, '');
+                        let _0x20c8d5 = _0x5611f8 == 0x1 ? _0xf34d7e(0x15e) : _0xf34d7e(0x185) + (_0x5611f8 - 0x1) + _0xf34d7e(0x143);
+                        _0x20c8d5 = _0x20c8d5[_0xf34d7e(0x132)](0xb), _0x20c8d5 += _0x7e2916 + ';', _0x4bae23 += _0x20c8d5[_0xf34d7e(0x132)](0x2d), _0x4bae23 += _0x563168 != _0x57df15 ? _0xf34d7e(0x146) + _0x563168 + '->' + _0x57df15 + '\x0a' : '//\x20bit' + _0x563168 + '\x0a';
+                    }
+                    _0x4bae23 += _0xf34d7e(0x16c);
+                } else {
+                    if (_0x43c603 == _0xf34d7e(0x161)) {
+                        _0x23953d['textContent'] = _0xf34d7e(0x152), _0x4bae23 = _0xf34d7e(0x14c)[_0xf34d7e(0x132)](0xa) + '|Register\x20Description\x0a', _0x4bae23 += '-' ['repeat'](0xa) + '+' + '-' [_0xf34d7e(0x14d)](0x28) + '\x0a';
+                        for (const _0x1a264e of Object[_0xf34d7e(0x184)](_0x2fa17d)['sort']((_0x312b76, _0x4e13af) => _0x312b76 - _0x4e13af)) {
+                            const _0x8b1da9 = parseInt(_0x1a264e),
+                                _0x349f5d = parseInt(_0x2fa17d[_0x1a264e][_0xf34d7e(0x12f)]),
+                                _0x4c3ad2 = _0x8b1da9 - _0x349f5d + 0x1,
+                                _0x56c3a5 = _0x2fa17d[_0x1a264e][_0xf34d7e(0x148)];
+                            let _0x5d6837 = _0x4c3ad2 == 0x1 ? '' + _0x8b1da9 : _0x8b1da9 + ':' + _0x349f5d;
+                            _0x4bae23 += _0x5d6837['padEnd'](0xa), _0x4bae23 += '|' + _0x56c3a5 + '\x0a';
+                        }
+                    }
                 }
-                content += `}Object_s;\n`;
-            } else if (input == "Spec") {
-                labelElement.textContent = "Convert To Specification";
-                content = `BitIndex`.padEnd(10) + `|Register Description\n`;
-                content += '-'.repeat(10) + '+' + '-'.repeat(40) + "\n";
-                for (const key of Object.keys(myfieldDict).sort((a, b) => a - b)) {
-                    const msb = parseInt(key);
-                    const lsb = parseInt(myfieldDict[key]['lsbPos']);
-                    const size = msb - lsb + 1;
-                    const fieldName = myfieldDict[key]['fieldName'];
-                    let fieldDeclare = (size == 1) ? `${msb}` : `${msb}:${lsb}`;
-                    content += fieldDeclare.padEnd(10);
-                    content += `|${fieldName}\n`;
-
-                }
-
             }
-
-            inputField.innerText = content;
+            _0x3f8347[_0xf34d7e(0x199)] = _0x4bae23;
         }
 
         function closeForm() {
-            var popupForm = document.getElementById("popupForm");
-
-            popupForm.style.display = "none";
+            const _0x20f0bd = a0_0x2a60f6;
+            var _0x420ab8 = document[_0x20f0bd(0x182)](_0x20f0bd(0x164));
+            _0x420ab8[_0x20f0bd(0x136)][_0x20f0bd(0x17c)] = _0x20f0bd(0x17a);
         }
 
-        function handleEnter(event) {
-            if ((event.target.id !== "input_field") &&
-                (event.key === 'Enter')) {
-                // if (event.key === 'Enter') {
-                calculateSum();
-                event.preventDefault();
+        function a0_0x131e() {
+            const _0x4934fa = ['2490LIZZSW', 'getBoundingClientRect', '247MqlBZx', '</span>', 'undefined', 'focusOffset', 'lsbPos', 'longint', '2462887kRrbks', 'padEnd', '<br><span\x20class=\x22field_value\x22>', 'byte', 'idx', 'style', 'Enter', 'textContent', 'reg', 'firstChild', 'fields63_32', 'split', 'innerHTML', 'BitField', 'colspan', '534pZGSxP', '\x22\x22>', '<div\x20class=\x22highlighted-line\x22\x20title=\x22', ':0]', 'typedef\x20struct\x20packed{\x0a', 'test', '//\x20bit', 'reverse', 'fieldName', 'forEach', '655732DyqwZH', 'join', 'BitIndex', 'repeat', 'abs', 'yellow', 'shortint', 'sort', 'Convert\x20To\x20Specification', 'Error:\x20\x20', 'userAgent', 'toString', 'length', '</div>', 'className', 'fields31_0', 'max', '1009536OkDTTY', 'right', '[id=\x22', 'bit', 'replace', 'childNodes', 'Spec', 'backgroundColor', 'children', 'popupForm', 'mouseup', 'anchorNode', 'value', 'block', 'toLocaleString', '24435WxirxY', 'querySelectorAll', '}Object_s;\x0a', 'addEventListener', 'includes', 'clientX', '15kbotVU', '#form_text_output', 'fromCharCode', 'popupFormLabel', 'setStart', 'createRange', 'querySelector', 'buffer', 'top', 'SV_Header', 'none', '\x0aInput:\x20', 'display', 'setAttribute', '14rmQVWN', '4rinqwU', 'padStart', 'toUpperCase', 'getElementById', 'clientY', 'keys', 'bit\x20[', 'getSelection', 'map', 'RSV', '11897vWsbcg', '8nRyLCF', 'from', 'floor', '<div>', 'match', 'left', 'lineHeight', 'input_field', '#pragma\x20pack(1)\x0atypedef\x20struct\x20{\x0a', 'logic', 'scrollTop', '}Object_t;\x0a', 'removeChild', 'input_expression', 'target', 'innerText', 'appendChild', 'parentElement', 'removeAllRanges', 'createElement', 'mousemove', '<span\x20class=\x22highlight\x22>', '130059yROmpl', 'decimalResult', 'fieldInfo', 'hasOwnProperty'];
+            a0_0x131e = function() {
+                return _0x4934fa;
+            };
+            return a0_0x131e();
+        }
+
+        function handleEnter(_0x2260f5) {
+            const _0x49255b = a0_0x2a60f6;
+            _0x2260f5[_0x49255b(0x198)]['id'] !== 'input_field' && _0x2260f5['key'] === _0x49255b(0x137) && (calculateSum(), _0x2260f5['preventDefault']());
+        }
+
+        function decimalToHex(_0x127f18) {
+            const _0xcf7404 = a0_0x2a60f6,
+                _0x4069bd = new BigUint64Array(0x1);
+            return _0x4069bd[0x0] = BigInt(_0x127f18), Array[_0xcf7404(0x18b)](new Uint8Array(_0x4069bd[_0xcf7404(0x177)]))[_0xcf7404(0x187)](_0x478368 => _0x478368[_0xcf7404(0x155)](0x10)[_0xcf7404(0x180)](0x2, '0'))[_0xcf7404(0x147)]()[_0xcf7404(0x14b)]('')[_0xcf7404(0x181)]();
+        }
+
+        function decimalToBinary(_0x460246) {
+            const _0x1f15fc = a0_0x2a60f6,
+                _0x3e9885 = new BigUint64Array(0x1);
+            return _0x3e9885[0x0] = BigInt(_0x460246), Array[_0x1f15fc(0x18b)](new Uint8Array(_0x3e9885[_0x1f15fc(0x177)]))[_0x1f15fc(0x187)](_0x1dd75f => _0x1dd75f[_0x1f15fc(0x155)](0x2)['padStart'](0x8, '0'))[_0x1f15fc(0x147)]()[_0x1f15fc(0x14b)]('')[_0x1f15fc(0x181)]();
+        }
+
+        function convertInput(_0x170674) {
+            const _0xb9b8d6 = a0_0x2a60f6;
+            let _0x36960e = _0x170674;
+            const _0x5a5244 = /[0-9]*'h([0-9A-Fa-f]+)/g,
+                _0x223e16 = /[0-9]*'b([0-1]+)/g,
+                _0x1ea73a = /([0-9])_([0-9])/g;
+            return _0x36960e = _0x36960e[_0xb9b8d6(0x15f)](_0x5a5244, (_0x41dfe5, _0x3917e1) => '0x' + _0x3917e1), _0x36960e = _0x36960e[_0xb9b8d6(0x15f)](_0x223e16, (_0x13ea19, _0x22de2c) => '0b' + _0x22de2c), _0x36960e = _0x36960e[_0xb9b8d6(0x15f)](_0x1ea73a, (_0x405a04, _0x20421c, _0x416b57) => _0x20421c + _0x416b57), _0x36960e;
+        }
+
+        function highlightBit1InBinary(_0x4b3688) {
+            const _0x5098e5 = a0_0x2a60f6;
+            let _0x436e62 = '';
+            for (let _0x5dd389 = 0x0; _0x5dd389 <= 0x1f; _0x5dd389++) {
+                const _0x59c816 = _0x4b3688[_0x5dd389];
+                _0x436e62 += _0x59c816 === '1' ? _0x5098e5(0x19f) + _0x59c816 + _0x5098e5(0x12c) : _0x59c816;
+                if ((_0x5dd389 + 0x1) % 0x8 === 0x0 && _0x5dd389 !== 0x1f) _0x436e62 += '\x20';
+                else(_0x5dd389 + 0x1) % 0x4 === 0x0 && _0x5dd389 !== 0x1f && (_0x436e62 += '_');
             }
+            return _0x436e62;
         }
 
-        function decimalToHex(decimal) {
-            const arr = new BigUint64Array(1);
-            arr[0] = BigInt(decimal);
-            return Array.from(new Uint8Array(arr.buffer)).map(b => b.toString(16).padStart(2, '0')).reverse().join('').toUpperCase();
-        }
-
-        function decimalToBinary(decimal) {
-            const arr = new BigUint64Array(1);
-            arr[0] = BigInt(decimal);
-            return Array.from(new Uint8Array(arr.buffer)).map(b => b.toString(2).padStart(8, '0')).reverse().join('').toUpperCase();
-        }
-
-        function convertInput(inputVal) {
-            let convertVal = inputVal;
-            const hexPattern = /[0-9]*'h([0-9A-Fa-f]+)/g;
-            const binaryPattern = /[0-9]*'b([0-1]+)/g;
-            const dashPattern = /([0-9])_([0-9])/g;
-            convertVal = convertVal.replace(hexPattern, (_, e1) => '0x' + e1);
-            convertVal = convertVal.replace(binaryPattern, (_, e1) => '0b' + e1);
-            convertVal = convertVal.replace(dashPattern, (_, e1, e2) => e1 + e2);
-            return convertVal;
-        }
-
-        function highlightBit1InBinary(binary_str) {
-            // Highlight bit 1 with red color
-            let binaryHighlight = '';
-            for (let i = 0; i <= 31; i++) {
-                const bit = binary_str[i];
-                binaryHighlight += bit === '1' ? `<span class="highlight">${bit}</span>` : bit;
-                if ((i + 1) % 8 === 0 && i !== 31) {
-                    binaryHighlight += ' '; // Add space every 4 bits (except the last group)
-                } else if ((i + 1) % 4 === 0 && i !== 31) {
-                    binaryHighlight += '_'; // Add space every 4 bits (except the last group)
-                }
-            }
-            return binaryHighlight;
-        }
-
-        function updateBitVal(bitID, val) {
-            const bitElement = document.getElementById(bitID);
-            bitElement.innerHTML = val == 1 ? `<span class="highlight">${val}</span>` : val;
+        function updateBitVal(_0x57f3d2, _0x764e42) {
+            const _0x486e80 = a0_0x2a60f6,
+                _0x7208a2 = document[_0x486e80(0x182)](_0x57f3d2);
+            _0x7208a2['innerHTML'] = _0x764e42 == 0x1 ? _0x486e80(0x19f) + _0x764e42 + _0x486e80(0x12c) : _0x764e42;
         }
 
         function removeFields() {
-            let fieldsRow = document.getElementById("fields63_32");
-            // Remove all existing td elements from the row
-            while (fieldsRow.firstChild) {
-                fieldsRow.removeChild(fieldsRow.firstChild);
+            const _0x4928ca = a0_0x2a60f6;
+            let _0x243d9c = document[_0x4928ca(0x182)](_0x4928ca(0x13b));
+            while (_0x243d9c[_0x4928ca(0x13a)]) {
+                _0x243d9c[_0x4928ca(0x196)](_0x243d9c[_0x4928ca(0x13a)]);
             }
-            fieldsRow.appendChild(document.createElement("th"));
-            fieldsRow = document.getElementById("fields31_0");
-            // Remove all existing td elements from the row
-            while (fieldsRow.firstChild) {
-                fieldsRow.removeChild(fieldsRow.firstChild);
+            _0x243d9c[_0x4928ca(0x19a)](document[_0x4928ca(0x19d)]('th')), _0x243d9c = document[_0x4928ca(0x182)](_0x4928ca(0x159));
+            while (_0x243d9c[_0x4928ca(0x13a)]) {
+                _0x243d9c[_0x4928ca(0x196)](_0x243d9c[_0x4928ca(0x13a)]);
             }
-            fieldsRow.appendChild(document.createElement("th"));
+            _0x243d9c[_0x4928ca(0x19a)](document[_0x4928ca(0x19d)]('th'));
         }
 
-        function addFields(msb, lsb, str64bit, fieldName, idx) {
-            const reverseStr64bit = str64bit.split("").reverse().join("");
-            const substringBinary = reverseStr64bit.substring(lsb, msb + 1).split("").reverse().join("");
-            const hexadecimalValue = parseInt(substringBinary, 2).toString(16);
-            let fieldsRow = "";
-            let fieldSize = 0;
-            let newTd = document.createElement("td");
-            const fieldContent = `${fieldName}<br><span class="field_value">${hexadecimalValue}</span>`;
-            if ((msb <= 31) && (lsb <= 31)) {
-                fieldsRow = document.getElementById("fields31_0");
-                fieldSize = msb - lsb + 1;
-                newTd.setAttribute("colspan", fieldSize);
-                newTd.className = "fieldInfo";
-                newTd.id = `BitField${idx}`;
-                newTd.innerHTML = fieldContent;
-                fieldsRow.appendChild(newTd);
-            } else if ((msb >= 32) && (lsb >= 32)) {
-                fieldsRow = document.getElementById("fields63_32");
-                fieldSize = msb - lsb + 1;
-                newTd.setAttribute("colspan", fieldSize);
-                newTd.className = "fieldInfo";
-                newTd.id = `BitField${idx}`;
-                newTd.innerHTML = fieldContent;
-                fieldsRow.appendChild(newTd);
-            } else {
-                fieldsRow = document.getElementById("fields63_32");
-                fieldSize = msb - 32 + 1;
-                newTd.setAttribute("colspan", fieldSize);
-                newTd.className = "fieldInfo";
-                newTd.id = `BitField${idx}`;
-                newTd.innerHTML = fieldContent;
-                fieldsRow.appendChild(newTd);
-
-                newTd = document.createElement("td");
-                fieldsRow = document.getElementById("fields31_0");
-                fieldSize = 31 - lsb + 1;
-                newTd.setAttribute("colspan", fieldSize);
-                newTd.className = "fieldInfo";
-                newTd.id = `BitField${idx}`;
-                newTd.innerHTML = fieldContent;
-                fieldsRow.appendChild(newTd);
-
-            }
-
+        function addFields(_0x886c85, _0x568085, _0x3e32e0, _0x5cd07e, _0x1a921a) {
+            const _0x41c944 = a0_0x2a60f6,
+                _0x3d1612 = _0x3e32e0[_0x41c944(0x13c)]('')[_0x41c944(0x147)]()['join'](''),
+                _0x390445 = _0x3d1612['substring'](_0x568085, _0x886c85 + 0x1)['split']('')['reverse']()[_0x41c944(0x14b)](''),
+                _0x33c49d = parseInt(_0x390445, 0x2)[_0x41c944(0x155)](0x10);
+            let _0x45f036 = '',
+                _0x19a7d4 = 0x0,
+                _0x111369 = document[_0x41c944(0x19d)]('td');
+            const _0x22bfd2 = _0x5cd07e + _0x41c944(0x133) + _0x33c49d + _0x41c944(0x12c);
+            if (_0x886c85 <= 0x1f && _0x568085 <= 0x1f) _0x45f036 = document['getElementById'](_0x41c944(0x159)), _0x19a7d4 = _0x886c85 - _0x568085 + 0x1, _0x111369['setAttribute'](_0x41c944(0x13f), _0x19a7d4), _0x111369[_0x41c944(0x158)] = _0x41c944(0x127), _0x111369['id'] = _0x41c944(0x13e) + _0x1a921a, _0x111369[_0x41c944(0x13d)] = _0x22bfd2, _0x45f036[_0x41c944(0x19a)](_0x111369);
+            else _0x886c85 >= 0x20 && _0x568085 >= 0x20 ? (_0x45f036 = document[_0x41c944(0x182)](_0x41c944(0x13b)), _0x19a7d4 = _0x886c85 - _0x568085 + 0x1, _0x111369[_0x41c944(0x17d)]('colspan', _0x19a7d4), _0x111369[_0x41c944(0x158)] = 'fieldInfo', _0x111369['id'] = 'BitField' + _0x1a921a, _0x111369['innerHTML'] = _0x22bfd2, _0x45f036[_0x41c944(0x19a)](_0x111369)) : (_0x45f036 = document['getElementById'](_0x41c944(0x13b)), _0x19a7d4 = _0x886c85 - 0x20 + 0x1, _0x111369[_0x41c944(0x17d)](_0x41c944(0x13f), _0x19a7d4), _0x111369[_0x41c944(0x158)] = _0x41c944(0x127), _0x111369['id'] = _0x41c944(0x13e) + _0x1a921a, _0x111369[_0x41c944(0x13d)] = _0x22bfd2, _0x45f036['appendChild'](_0x111369), _0x111369 = document[_0x41c944(0x19d)]('td'), _0x45f036 = document['getElementById']('fields31_0'), _0x19a7d4 = 0x1f - _0x568085 + 0x1, _0x111369[_0x41c944(0x17d)](_0x41c944(0x13f), _0x19a7d4), _0x111369[_0x41c944(0x158)] = _0x41c944(0x127), _0x111369['id'] = _0x41c944(0x13e) + _0x1a921a, _0x111369[_0x41c944(0x13d)] = _0x22bfd2, _0x45f036[_0x41c944(0x19a)](_0x111369));
         }
 
         function getFields() {
-            const inputElement = document.getElementById('input_field');
-            inputVal = inputElement.innerText;
-            const myfieldDict = {};
-            let idxCnt;
-            inputVal.split(/\n/).forEach((text, idx) => {
-                text = text.replace(/\s+[-:]\s+\w.*$/, ""); //Remove comment
-                let regex = /^\s*(\d+)\s*[:-]\s*(\d+)[\s\|]+(.*)/;
-                if (regex.test(text)) {
-                    const val1 = parseInt(RegExp.$1);
-                    const val2 = parseInt(RegExp.$2);
-                    const fieldName = RegExp.$3.replace(/[-]+/g, "_");
-                    const msbVal = Math.max(val1, val2);
-                    const lsbPos = Math.min(val1, val2);
-                    myfieldDict[msbVal] = {};
-                    myfieldDict[msbVal]["lsbPos"] = lsbPos;
-                    myfieldDict[msbVal]["fieldName"] = fieldName;
-                    myfieldDict[msbVal]["idx"] = idx;
+            const _0x45d0de = a0_0x2a60f6,
+                _0xf6ee08 = document[_0x45d0de(0x182)](_0x45d0de(0x191));
+            inputVal = _0xf6ee08[_0x45d0de(0x199)];
+            const _0x2374a7 = {};
+            let _0x7e9569;
+            inputVal[_0x45d0de(0x13c)](/\n/)[_0x45d0de(0x149)]((_0x922c36, _0xbda09e) => {
+                const _0x43ac41 = _0x45d0de;
+                _0x922c36 = _0x922c36['replace'](/\s+[-:]\s+\w.*$/, '');
+                let _0x41b658 = /^\s*(\d+)\s*[:-]\s*(\d+)[\s\|]+(.*)/;
+                if (_0x41b658[_0x43ac41(0x145)](_0x922c36)) {
+                    const _0x30a6b0 = parseInt(RegExp['$1']),
+                        _0x5b8e6c = parseInt(RegExp['$2']),
+                        _0x4f03b9 = RegExp['$3'][_0x43ac41(0x15f)](/[-]+/g, '_'),
+                        _0x3d3831 = Math[_0x43ac41(0x15a)](_0x30a6b0, _0x5b8e6c),
+                        _0x141fb4 = Math['min'](_0x30a6b0, _0x5b8e6c);
+                    _0x2374a7[_0x3d3831] = {}, _0x2374a7[_0x3d3831][_0x43ac41(0x12f)] = _0x141fb4, _0x2374a7[_0x3d3831]['fieldName'] = _0x4f03b9, _0x2374a7[_0x3d3831]['idx'] = _0xbda09e;
                     return;
                 }
-                regex = /^\s*(\d+)[\s|]+([\w ]+)\b/;
-                if (regex.test(text)) {
-                    const val1 = parseInt(RegExp.$1);
-                    const fieldName = RegExp.$2;
-                    myfieldDict[val1] = {};
-                    myfieldDict[val1]["lsbPos"] = val1;
-                    myfieldDict[val1]["fieldName"] = fieldName;
-                    myfieldDict[val1]["idx"] = idx;
+                _0x41b658 = /^\s*(\d+)[\s|]+([\w ]+)\b/;
+                if (_0x41b658['test'](_0x922c36)) {
+                    const _0x2733a5 = parseInt(RegExp['$1']),
+                        _0x4e6219 = RegExp['$2'];
+                    _0x2374a7[_0x2733a5] = {}, _0x2374a7[_0x2733a5][_0x43ac41(0x12f)] = _0x2733a5, _0x2374a7[_0x2733a5][_0x43ac41(0x148)] = _0x4e6219, _0x2374a7[_0x2733a5][_0x43ac41(0x135)] = _0xbda09e;
                     return;
-
                 }
-                regex = /(\bchar\b|\buint8_t\b|\bsigned char\b|\bint8_t\b|\bunsigned short\b|\buint16_t\b|\bshort\b|\bint16_t\b|\bunsigned int\b|\buint32_t\b|\bint\b|\bint32_t\b|\bunsigned long long\b|\buint64_t\b|\blong long\b|\bint64_t\b)\s+(\w+)\s*:\s*(\d+)\s*/;
-                if (regex.test(text)) {
-                    if (typeof idxCnt === "undefined") idxCnt = 0;
-                    const lsbPos = idxCnt;
-                    const size = parseInt(RegExp.$3);
-                    const msbVal = lsbPos + size - 1;
-                    const fieldName = RegExp.$2;
-                    myfieldDict[msbVal] = {};
-                    myfieldDict[msbVal]["lsbPos"] = lsbPos;
-                    myfieldDict[msbVal]["fieldName"] = fieldName;
-                    myfieldDict[msbVal]["idx"] = idx;
-                    idxCnt += size;
+                _0x41b658 = /(\bchar\b|\buint8_t\b|\bsigned char\b|\bint8_t\b|\bunsigned short\b|\buint16_t\b|\bshort\b|\bint16_t\b|\bunsigned int\b|\buint32_t\b|\bint\b|\bint32_t\b|\bunsigned long long\b|\buint64_t\b|\blong long\b|\bint64_t\b)\s+(\w+)\s*:\s*(\d+)\s*/;
+                if (_0x41b658['test'](_0x922c36)) {
+                    if (typeof _0x7e9569 === _0x43ac41(0x12d)) _0x7e9569 = 0x0;
+                    const _0x353da9 = _0x7e9569,
+                        _0x30d059 = parseInt(RegExp['$3']),
+                        _0xc4cd4e = _0x353da9 + _0x30d059 - 0x1,
+                        _0x359ade = RegExp['$2'];
+                    _0x2374a7[_0xc4cd4e] = {}, _0x2374a7[_0xc4cd4e][_0x43ac41(0x12f)] = _0x353da9, _0x2374a7[_0xc4cd4e][_0x43ac41(0x148)] = _0x359ade, _0x2374a7[_0xc4cd4e]['idx'] = _0xbda09e, _0x7e9569 += _0x30d059;
                     return;
-
                 }
-                regex = /(\bbit\b|\breg\b|\blogic\b)\s*\[\s*(\d+)\s*:(\d+)\s*\]\s*(\w+)\s*/;
-                if (regex.test(text)) {
-                    if (typeof idxCnt === "undefined") idxCnt = 0;
-                    const size = Math.abs(parseInt(RegExp.$3) - parseInt(RegExp.$2)) + 1;
-                    const lsbPos = idxCnt - size;
-                    const msbVal = lsbPos + size - 1;
-                    const fieldName = RegExp.$4;
-                    myfieldDict[msbVal] = {};
-                    myfieldDict[msbVal]["lsbPos"] = lsbPos;
-                    myfieldDict[msbVal]["fieldName"] = fieldName;
-                    myfieldDict[msbVal]["idx"] = idx;
-                    idxCnt -= size;
+                _0x41b658 = /(\bbit\b|\breg\b|\blogic\b)\s*\[\s*(\d+)\s*:(\d+)\s*\]\s*(\w+)\s*/;
+                if (_0x41b658[_0x43ac41(0x145)](_0x922c36)) {
+                    if (typeof _0x7e9569 === _0x43ac41(0x12d)) _0x7e9569 = 0x0;
+                    const _0x3190eb = Math[_0x43ac41(0x14e)](parseInt(RegExp['$3']) - parseInt(RegExp['$2'])) + 0x1,
+                        _0x1dc076 = _0x7e9569 - _0x3190eb,
+                        _0x5218aa = _0x1dc076 + _0x3190eb - 0x1,
+                        _0x3b10e6 = RegExp['$4'];
+                    _0x2374a7[_0x5218aa] = {}, _0x2374a7[_0x5218aa][_0x43ac41(0x12f)] = _0x1dc076, _0x2374a7[_0x5218aa][_0x43ac41(0x148)] = _0x3b10e6, _0x2374a7[_0x5218aa][_0x43ac41(0x135)] = _0xbda09e, _0x7e9569 -= _0x3190eb;
                     return;
-
                 }
-                regex = /^\s*(\bbit\b|\breg\b|\blogic\b|\bbyte\b|\bshortint\b|\bint\b|\blongint\b|\binteger\b)\s+(\w+)\s*/;
-                if (regex.test(text)) {
-                    if (typeof idxCnt === "undefined") idxCnt = 0;
-
-                    const numType = RegExp.$1;
-                    const size = (numType.includes("bit") || numType.includes("logic") || numType.includes("reg")) ? 1 : (
-                        numType.includes("byte") ? 8 : (
-                            numType.includes("shortint") ? 16 : (
-                                numType.includes("longint") ? 64 : 32
-                            )
-                        )
-                    );
-                    const lsbPos = idxCnt - size;
-                    const msbVal = lsbPos + size - 1;
-                    const fieldName = RegExp.$2;
-                    myfieldDict[msbVal] = {};
-                    myfieldDict[msbVal]["lsbPos"] = lsbPos;
-                    myfieldDict[msbVal]["fieldName"] = fieldName;
-                    myfieldDict[msbVal]["idx"] = idx;
-                    idxCnt -= size;
+                _0x41b658 = /^\s*(\bbit\b|\breg\b|\blogic\b|\bbyte\b|\bshortint\b|\bint\b|\blongint\b|\binteger\b)\s+(\w+)\s*/;
+                if (_0x41b658[_0x43ac41(0x145)](_0x922c36)) {
+                    if (typeof _0x7e9569 === 'undefined') _0x7e9569 = 0x0;
+                    const _0x419508 = RegExp['$1'],
+                        _0x17ad52 = _0x419508[_0x43ac41(0x16e)](_0x43ac41(0x15e)) || _0x419508[_0x43ac41(0x16e)](_0x43ac41(0x193)) || _0x419508[_0x43ac41(0x16e)](_0x43ac41(0x139)) ? 0x1 : _0x419508[_0x43ac41(0x16e)](_0x43ac41(0x134)) ? 0x8 : _0x419508['includes'](_0x43ac41(0x150)) ? 0x10 : _0x419508[_0x43ac41(0x16e)](_0x43ac41(0x130)) ? 0x40 : 0x20,
+                        _0xd26803 = _0x7e9569 - _0x17ad52,
+                        _0x359aa2 = _0xd26803 + _0x17ad52 - 0x1,
+                        _0x338db8 = RegExp['$2'];
+                    _0x2374a7[_0x359aa2] = {}, _0x2374a7[_0x359aa2][_0x43ac41(0x12f)] = _0xd26803, _0x2374a7[_0x359aa2]['fieldName'] = _0x338db8, _0x2374a7[_0x359aa2]['idx'] = _0xbda09e, _0x7e9569 -= _0x17ad52;
                     return;
-
                 }
-            })
-            if (idxCnt < 0) {
-                const offset = Math.abs(idxCnt);
-                const keyLst = Object.keys(myfieldDict);
-                for (const key of keyLst) {
-                    const newKey = parseInt(key) + offset;
-                    myfieldDict[key]['lsbPos'] += offset;
-                    myfieldDict[newKey] = myfieldDict[key];
-                    delete myfieldDict[key];
+            });
+            if (_0x7e9569 < 0x0) {
+                const _0x2038b5 = Math[_0x45d0de(0x14e)](_0x7e9569),
+                    _0xb6154d = Object[_0x45d0de(0x184)](_0x2374a7);
+                for (const _0x1fc5b1 of _0xb6154d) {
+                    const _0x51f3d8 = parseInt(_0x1fc5b1) + _0x2038b5;
+                    _0x2374a7[_0x1fc5b1][_0x45d0de(0x12f)] += _0x2038b5, _0x2374a7[_0x51f3d8] = _0x2374a7[_0x1fc5b1], delete _0x2374a7[_0x1fc5b1];
                 }
             }
-            let maxCheckedVal = 63;
-            let rsvCnt = 0;
-            const msbLst = Object.keys(myfieldDict).sort((a, b) => b - a);
-            if (msbLst.length == 0) return myfieldDict;
-            let idx = -1;
-            let lsbPos = 0;
-            while (maxCheckedVal >= 0) {
-
-                if (myfieldDict.hasOwnProperty(maxCheckedVal) == 0) {
-                    lsbPos = (idx <= msbLst.length - 2) ? parseInt(msbLst[idx + 1]) + 1 : 0;
-                    myfieldDict[maxCheckedVal] = {};
-                    myfieldDict[maxCheckedVal]['lsbPos'] = parseInt(lsbPos);
-                    myfieldDict[maxCheckedVal]['fieldName'] = `RSV${rsvCnt}`;
-                    rsvCnt++;
-                } else {
-                    lsbPos = myfieldDict[maxCheckedVal]['lsbPos'];
-                    idx++;
-                }
-                maxCheckedVal = parseInt(lsbPos) - 1;
-
+            let _0x91455e = 0x3f,
+                _0x10b29b = 0x0;
+            const _0x3a68b6 = Object[_0x45d0de(0x184)](_0x2374a7)[_0x45d0de(0x151)]((_0x913c4f, _0x2d2647) => _0x2d2647 - _0x913c4f);
+            if (_0x3a68b6[_0x45d0de(0x156)] == 0x0) return _0x2374a7;
+            let _0x341299 = -0x1,
+                _0x4054a0 = 0x0;
+            while (_0x91455e >= 0x0) {
+                _0x2374a7[_0x45d0de(0x128)](_0x91455e) == 0x0 ? (_0x4054a0 = _0x341299 <= _0x3a68b6[_0x45d0de(0x156)] - 0x2 ? parseInt(_0x3a68b6[_0x341299 + 0x1]) + 0x1 : 0x0, _0x2374a7[_0x91455e] = {}, _0x2374a7[_0x91455e][_0x45d0de(0x12f)] = parseInt(_0x4054a0), _0x2374a7[_0x91455e][_0x45d0de(0x148)] = _0x45d0de(0x188) + _0x10b29b, _0x10b29b++) : (_0x4054a0 = _0x2374a7[_0x91455e][_0x45d0de(0x12f)], _0x341299++), _0x91455e = parseInt(_0x4054a0) - 0x1;
             }
-
-            return myfieldDict;
+            return _0x2374a7;
         }
 
         function calculateSum() {
-            let inputVal = ''
+            const _0x472c5b = a0_0x2a60f6;
+            let _0x519aad = '';
             try {
-                const inputElement = document.getElementById('input_expression');
-                inputVal = inputElement.value;
-                inputVal = convertInput(inputVal);
-                const result = parseInt(eval(inputVal));
-
-                const decimalResultElement = document.getElementById('decimalResult');
-                decimalResultElement.textContent = `${result.toLocaleString()}`;
-
-                const hexResultElement = document.getElementById('hexResult');
-                const hexStr = decimalToHex(result).match(/.{1,4}/g).join('_');;
-                hexResultElement.textContent = `0x${hexStr}`;
-
-
-                const binaryStr = decimalToBinary(result);
-                binaryStr.split("").reverse().map((val, idex) => updateBitVal(`bit${idex}`, val));
-                removeFields();
-                myfieldDict = getFields();
-                for (const key of Object.keys(myfieldDict).sort((a, b) => b - a)) {
-                    const msb = key;
-                    const lsb = myfieldDict[key]['lsbPos'];
-                    const fieldName = myfieldDict[key]['fieldName'];
-                    const idx = myfieldDict[key]['idx'];
-                    addFields(parseInt(msb), parseInt(lsb), binaryStr, fieldName, idx);
+                const _0x1d7053 = document[_0x472c5b(0x182)](_0x472c5b(0x197));
+                _0x519aad = _0x1d7053[_0x472c5b(0x167)], _0x519aad = convertInput(_0x519aad);
+                const _0x25d928 = parseInt(eval(_0x519aad)),
+                    _0xd7d4e = document['getElementById'](_0x472c5b(0x1a1));
+                _0xd7d4e[_0x472c5b(0x138)] = '' + _0x25d928[_0x472c5b(0x169)]();
+                const _0x17caae = document[_0x472c5b(0x182)]('hexResult'),
+                    _0xf85965 = decimalToHex(_0x25d928)[_0x472c5b(0x18e)](/.{1,4}/g)['join']('_');;
+                _0x17caae['textContent'] = '0x' + _0xf85965;
+                const _0x3b0413 = decimalToBinary(_0x25d928);
+                _0x3b0413[_0x472c5b(0x13c)]('')[_0x472c5b(0x147)]()[_0x472c5b(0x187)]((_0x5b3a2f, _0x44e659) => updateBitVal(_0x472c5b(0x15e) + _0x44e659, _0x5b3a2f)), removeFields(), myfieldDict = getFields();
+                for (const _0x29632b of Object['keys'](myfieldDict)['sort']((_0x5a8ce3, _0x1894b8) => _0x1894b8 - _0x5a8ce3)) {
+                    const _0xb72702 = _0x29632b,
+                        _0x370aa9 = myfieldDict[_0x29632b][_0x472c5b(0x12f)],
+                        _0x2d42db = myfieldDict[_0x29632b][_0x472c5b(0x148)],
+                        _0x19e54b = myfieldDict[_0x29632b]['idx'];
+                    addFields(parseInt(_0xb72702), parseInt(_0x370aa9), _0x3b0413, _0x2d42db, _0x19e54b);
                 }
-
-
-
-            } catch (error) {
-                alert(`Error:  ${error}\nInput: ${inputVal}`);
+            } catch (_0x5d1e96) {
+                alert(_0x472c5b(0x153) + _0x5d1e96 + _0x472c5b(0x17b) + _0x519aad);
             }
         }
     </script>
