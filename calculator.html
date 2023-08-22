@@ -405,7 +405,11 @@
         }
         else{
            const inputElement = document.getElementById('input_expression');
+            const fieldElement = document.getElementById('input_field');
            inputElement.addEventListener("blur", function() {
+               calculateSum();
+            });
+             fieldElement.addEventListener("blur", function() {
                calculateSum();
             });
         }
