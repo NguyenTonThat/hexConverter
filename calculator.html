@@ -396,8 +396,19 @@
                 }
             }
         }(a0_0x3c5c, 0xf213b));
-        !/iPhone|iPod|iPad|Android/ [a0_0x157100(0x136)](navigator[a0_0x157100(0x145)]) && (displayPageName(), dragForm(), highlightFields());
+      //  !/iPhone|iPod|iPad|Android/ [a0_0x157100(0x136)](navigator[a0_0x157100(0x145)]) && (displayPageName(), dragForm(), highlightFields());
 
+        if (!/iPhone|iPod|iPad|Android/.test(navigator.userAgent)) {
+            displayPageName();
+            dragForm();
+            highlightFields();
+        }
+        else{
+           const inputElement = document.getElementById('input_expression');
+           inputElement.addEventListener("blur", function() {
+               calculateSum();
+            });
+        }
         function displayPageName() {
             const _0x52d729 = a0_0x157100;
             document[_0x52d729(0xeb)]('DOMContentLoaded', function() {
