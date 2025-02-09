@@ -889,7 +889,7 @@
 
         const hexResultElement = document.getElementById('hexResult');
         if (hexResultElement) {
-            const hexStr = result.toString(16).padStart(16, '0').match(/.{1,4}/g).join('_');
+            const hexStr = result.toString(16).padStart(16, '0').replace(/(?<=\w)(?=(\w{4})+$)/g, '_');
             hexResultElement.textContent = `0x${hexStr}`;
         } else {
             console.error("Element with ID 'hexResult' not found in the DOM.");
