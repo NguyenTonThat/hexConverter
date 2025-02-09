@@ -865,7 +865,7 @@
                 }
                 inputVal = inputElement.value.replace(/_/g, ''); // Remove underscores
                 // Convert custom syntax like bit(n) to (1 << n)
-                inputVal = inputVal.replace(/bit\((\d+)\)/g, '(1n << $1)');
+                inputVal = inputVal.replace(/bit\((\d+)\)/g, '(1 << $1)');
                 // Convert numbers to BigInt-safe operations and handle shifts
                 inputVal = inputVal.replace(/0x[0-9A-Fa-f]+|\d+|>>|<</g, (match) => {
                     if (match.startsWith('0x')) {
