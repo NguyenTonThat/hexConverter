@@ -14,7 +14,7 @@
             margin: 0;
             padding-bottom: 40px;
         }
-        
+
         .calculator {
             overflow-x: auto;
             /* Enable horizontal scrolling */
@@ -26,9 +26,10 @@
             /* align-items: left; */
             /* justify-content: center; */
         }
+
         /* Target Microsoft Edge on iOS */
         /* Responsive design for all browsers and devices */
-        
+
         .button-label {
             display: inline-block;
             margin-top: 5px;
@@ -38,7 +39,7 @@
             border: none;
             /* max-width: 200px; */
         }
-        
+
         .input-text {
             width: 95%;
             height: 80px;
@@ -50,7 +51,7 @@
             resize: vertical;
             margin-left: 5px;
         }
-        
+
         .input-field {
             margin-left: 5px;
             width: 80%;
@@ -66,64 +67,66 @@
             line-height: 1.5;
             resize: vertical;
         }
-        
+
         .output {
             /* width: 95%; */
             text-align: left;
             margin-right: 10px;
         }
-        
+
         .sub-text {
             color: orange;
             padding-top: 0px;
             padding-bottom: 5px;
         }
-        
+
         .table-wrapper {
             display: flex;
             justify-content: center;
         }
-        
+
         table {
             border-collapse: collapse;
             margin-top: 20px;
             border: 1px solid transparent;
         }
-        
+
         th,
         td {
             border: 1px solid transparent;
             text-align: left;
         }
-        
+
         th {
             background-color: transparent;
             vertical-align: top;
         }
-        
+
         td {
             background-color: transparent;
         }
+
         /* Red color for the highlighted bits */
-        
+
         .highlight {
             color: red;
             font-weight: bold;
         }
+
         /*New added*/
         /* CSS code */
         /* table tr td:first-child, */
-        
+
         table tr th:first-child {
             width: 20%;
         }
-        
+
         .binHeader {
             padding-top: 2;
             padding-bottom: 0;
             border: 1px solid transparent;
         }
-        
+
         .bit {
             width: fit-content;
             padding: 0;
@@ -132,7 +135,7 @@
             border-top: 1px dashed black;
             text-align: center;
         }
-        
+
         .group {
             padding: 0;
             border-left: 2px solid black;
@@ -141,13 +144,13 @@
             font-size: 14px;
             width: fit-content;
         }
-        
+
         .field_value {
             color: violet;
             text-align: center;
             font-weight: bold;
         }
-        
+
         .fieldInfo {
             padding: 0;
             padding-top: 2px;
@@ -159,7 +162,7 @@
             vertical-align: top;
             font-size: 12px;
         }
-        
+
         .bitPosition {
             height: 10px;
             text-align: left;
@@ -171,7 +174,7 @@
             border-right: 2px solid black; */
             /* text-align: left; */
         }
-        
+
         .popup-text {
             width: 100%;
             height: 90%;
@@ -188,7 +191,7 @@
             white-space: pre-line;
             line-height: 1.5;
         }
-        
+
         .popup-form {
             display: none;
             position: absolute;
@@ -209,7 +212,7 @@
             /* Stack items vertically */
             align-items: flex-start;
         }
-        
+
         .highlighted-line {
             background-color: yellow;
             /* Change this to the desired highlight color */
@@ -227,12 +230,19 @@
         <div style="padding: 8px;"></div>
         <div style="display: flex; align-items: center;width: 100%;">
 
-            <div id="input_field" rows="1" style="margin-right: 5px;flex: 1;width: 100%;" class="input-field" contenteditable="true"></div>
+            <div id="input_field" rows="1" style="margin-right: 5px;flex: 1;width: 100%;" class="input-field"
+                contenteditable="true"></div>
             <div style="display: flex; flex-direction: column;">
 
-                <button style="margin:5px; padding: 5px 10px; background-color:blue; color: #fff; border: none; cursor: pointer;" onclick="showPopupForm('C_Header')">.h</button>
-                <button style="margin: 5px; padding: 5px 10px; background-color: blue; color: #fff; border: none; cursor: pointer;" onclick="showPopupForm('SV_Header')">.sv</button>
-                <button style="margin: 5px; padding: 5px 10px; background-color: blue; color: #fff; border: none; cursor: pointer;" onclick="showPopupForm('Spec')">Spec</button>
+                <button
+                    style="margin:5px; padding: 5px 10px; background-color:blue; color: #fff; border: none; cursor: pointer;"
+                    onclick="showPopupForm('C_Header')">.h</button>
+                <button
+                    style="margin: 5px; padding: 5px 10px; background-color: blue; color: #fff; border: none; cursor: pointer;"
+                    onclick="showPopupForm('SV_Header')">.sv</button>
+                <button
+                    style="margin: 5px; padding: 5px 10px; background-color: blue; color: #fff; border: none; cursor: pointer;"
+                    onclick="showPopupForm('Spec')">Spec</button>
 
             </div>
         </div>
@@ -384,16 +394,16 @@
         } else {
             const inputElement = document.getElementById('input_expression');
             const fieldElement = document.getElementById('input_field');
-            inputElement.addEventListener("blur", function() {
+            inputElement.addEventListener("blur", function () {
                 calculateSum();
             });
-            fieldElement.addEventListener("blur", function() {
+            fieldElement.addEventListener("blur", function () {
                 calculateSum();
             });
         }
 
         function displayPageName() {
-            document.addEventListener("DOMContentLoaded", function() {
+            document.addEventListener("DOMContentLoaded", function () {
                 var pageTitle = String.fromCharCode(
                     67, 97, 108, 99, 117, 108, 97, 116, 111, 114, 32, 40, 67, 114, 101, 97, 116, 101, 100, 32, 98, 121, 32,
                     78, 103, 117, 121, 101, 110, 32, 84, 111, 110, 41
@@ -531,7 +541,7 @@
                     const lsb = parseInt(myfieldDict[key]['lsbPos']);
                     const size = msb - lsb + 1;
                     const fieldName = myfieldDict[key]['fieldName'].replace(/\s+/g, "");
-                    let fieldDeclare = (size == 1) ? "bit" : `bit [${size-1}:0]`;
+                    let fieldDeclare = (size == 1) ? "bit" : `bit [${size - 1}:0]`;
                     fieldDeclare = fieldDeclare.padEnd(11);
                     fieldDeclare += `${fieldName};`;
                     content += fieldDeclare.padEnd(maxFieldNameLen + 20);
@@ -846,79 +856,80 @@
 
 
         function calculateSum() {
-    let inputVal = '';
-    try {
-        const inputElement = document.getElementById('input_expression');
-        if (!inputElement) {
-            alert('Error: Input element not found');
-            return;
-        }
-        inputVal = inputElement.value.replace(/_/g, ''); // Remove underscores
+            let inputVal = '';
+            try {
+                const inputElement = document.getElementById('input_expression');
+                if (!inputElement) {
+                    alert('Error: Input element not found');
+                    return;
+                }
+                inputVal = inputElement.value.replace(/_/g, ''); // Remove underscores
+                // Convert custom syntax like bit(n) to (1 << n)
+                inputVal = inputVal.replace(/bit\((\d+)\)/g, '(1n << $1)');
+                // Convert numbers to BigInt-safe operations and handle shifts
+                inputVal = inputVal.replace(/0x[0-9A-Fa-f]+|\d+|>>|<</g, (match) => {
+                    if (match.startsWith('0x')) {
+                        let hexValue = match.slice(2).padStart(16, '0'); // Ensure 16 hex digits
+                        let high = parseInt(hexValue.slice(0, 8), 16);
+                        let low = parseInt(hexValue.slice(8, 16), 16);
+                        return `(BigInt(${high}) << 32n | BigInt(${low}))`;
+                    } else if (match === '>>') {
+                        return '>>';
+                    } else if (match === '<<') {
+                        return '<<';
+                    } else {
+                        return `BigInt(${match})`;
+                    }
+                });
 
-        // Convert numbers to BigInt-safe operations and handle shifts
-        inputVal = inputVal.replace(/0x[0-9A-Fa-f]+|\d+|>>|<</g, (match) => {
-            if (match.startsWith('0x')) {
-                let hexValue = match.slice(2).padStart(16, '0'); // Ensure 16 hex digits
-                let high = parseInt(hexValue.slice(0, 8), 16);
-                let low = parseInt(hexValue.slice(8, 16), 16);
-                return `(BigInt(${high}) << 32n | BigInt(${low}))`;
-            } else if (match === '>>') {
-                return '>>';
-            } else if (match === '<<') {
-                return '<<';
-            } else {
-                return `BigInt(${match})`;
+                console.log("Evaluating: ", inputVal);
+                // Evaluate the modified expression safely
+                const result = eval(inputVal);
+                console.log("Result: ", result);
+
+                // Convert result back to 64-bit hex
+                let resultHigh = Number((result >> 32n) & 0xFFFFFFFFn);
+                let resultLow = Number(result & 0xFFFFFFFFn);
+
+                const decimalResultElement = document.getElementById('decimalResult');
+                if (decimalResultElement) {
+                    decimalResultElement.textContent = `${result.toLocaleString()}`;
+                } else {
+                    console.error("Element with ID 'decimalResult' not found in the DOM.");
+                }
+
+                const hexResultElement = document.getElementById('hexResult');
+                if (hexResultElement) {
+                    // const hexStr = result.toString(16).padStart(16, '0').match(/.{1,4}/g).join('_');
+                    const hexStr = result.toString(16).padStart(16, '0').replace(/(?<=\w)(?=(\w{4})+$)/g, '_');
+                    hexResultElement.textContent = `0x${hexStr}`;
+                } else {
+                    console.error("Element with ID 'hexResult' not found in the DOM.");
+                }
+
+                const binaryStr = result.toString(2).padStart(64, '0');
+                binaryStr.split('').reverse().map((val, idex) => {
+                    const bitElement = document.getElementById(`bit${idex}`);
+                    if (bitElement) {
+                        updateBitVal(`bit${idex}`, val);
+                    } else {
+                        console.warn(`Element with ID 'bit${idex}' not found in the DOM.`);
+                    }
+                });
+
+                removeFields();
+                myfieldDict = getFields();
+                for (const key of Object.keys(myfieldDict).sort((a, b) => b - a)) {
+                    const msb = key;
+                    const lsb = myfieldDict[key]['lsbPos'];
+                    const fieldName = myfieldDict[key]['fieldName'];
+                    const idx = myfieldDict[key]['idx'];
+                    addFields(parseInt(msb), parseInt(lsb), binaryStr, fieldName, idx);
+                }
+            } catch (error) {
+                alert(`Error:  ${error}\nInput: ${inputVal}`);
             }
-        });
-
-        console.log("Evaluating: ", inputVal);
-        // Evaluate the modified expression safely
-        const result = eval(inputVal);
-        console.log("Result: ", result);
-
-        // Convert result back to 64-bit hex
-        let resultHigh = Number((result >> 32n) & 0xFFFFFFFFn);
-        let resultLow = Number(result & 0xFFFFFFFFn);
-
-        const decimalResultElement = document.getElementById('decimalResult');
-        if (decimalResultElement) {
-            decimalResultElement.textContent = `${result.toLocaleString()}`;
-        } else {
-            console.error("Element with ID 'decimalResult' not found in the DOM.");
         }
-
-        const hexResultElement = document.getElementById('hexResult');
-        if (hexResultElement) {
-            const hexStr = result.toString(16).padStart(16, '0').replace(/(?<=\w)(?=(\w{4})+$)/g, '_');
-            hexResultElement.textContent = `0x${hexStr}`;
-        } else {
-            console.error("Element with ID 'hexResult' not found in the DOM.");
-        }
-
-        const binaryStr = result.toString(2).padStart(64, '0');
-        binaryStr.split('').reverse().map((val, idex) => {
-            const bitElement = document.getElementById(`bit${idex}`);
-            if (bitElement) {
-                updateBitVal(`bit${idex}`, val);
-            } else {
-                console.warn(`Element with ID 'bit${idex}' not found in the DOM.`);
-            }
-        });
-
-        removeFields();
-        myfieldDict = getFields();
-        for (const key of Object.keys(myfieldDict).sort((a, b) => b - a)) {
-            const msb = key;
-            const lsb = myfieldDict[key]['lsbPos'];
-            const fieldName = myfieldDict[key]['fieldName'];
-            const idx = myfieldDict[key]['idx'];
-            addFields(parseInt(msb), parseInt(lsb), binaryStr, fieldName, idx);
-        }
-    } catch (error) {
-        alert(`Error:  ${error}\nInput: ${inputVal}`);
-    }
-}
-
 
 
 
