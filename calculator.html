@@ -867,20 +867,21 @@
                 // Convert custom syntax like bit(n) to (1 << n)
                 inputVal = inputVal.replace(/bit\((\d+)\)/g, '(1 << $1)');
                 // Convert numbers to BigInt-safe operations and handle shifts
-                inputVal = inputVal.replace(/0x[0-9A-Fa-f]+|\d+|>>|<</g, (match) => {
+                inputVal = inputVal.replace(/0x[0-9A-Fa-f]+|0b[01]+|\d+|>>|<</g, (match) => {
                     if (match.startsWith('0x')) {
                         let hexValue = match.slice(2).padStart(16, '0'); // Ensure 16 hex digits
                         let high = parseInt(hexValue.slice(0, 8), 16);
-                        let low = parseInt(hexValue.slice(8, 16), 16);
                         return `(BigInt(${high}) << 32n | BigInt(${low}))`;
-                    } else if (match === '>>') {
-                        return '>>';
-                    } else if (match === '<<') {
-                        return '<<';
+                    } else if (match.startsWith('0b')) {
+                        let decimalValue = parseInt(match.slice(2), 2);
+                        return `BigInt(${decimalValue})`;
+                    } else if (match === '>>' || match === '<<') {
+                        return match;
                     } else {
                         return `BigInt(${match})`;
                     }
                 });
+
 
                 console.log("Evaluating: ", inputVal);
                 // Evaluate the modified expression safely
