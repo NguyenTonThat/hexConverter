@@ -871,6 +871,7 @@
                     if (match.startsWith('0x')) {
                         let hexValue = match.slice(2).padStart(16, '0'); // Ensure 16 hex digits
                         let high = parseInt(hexValue.slice(0, 8), 16);
+                         let low = parseInt(hexValue.slice(8, 16), 16);   // <-- define low here
                         return `(BigInt(${high}) << 32n | BigInt(${low}))`;
                     } else if (match.startsWith('0b')) {
                         let decimalValue = parseInt(match.slice(2), 2);
