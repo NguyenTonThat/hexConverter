@@ -874,12 +874,11 @@
                          let low = parseInt(hexValue.slice(8, 16), 16);   // <-- define low here
                         return `(BigInt(${high}) << 32n | BigInt(${low}))`;
                     } else if (match.startsWith('0b')) {
-                        let decimalValue = parseInt(match.slice(2), 2);
-                        return `BigInt(${decimalValue})`;
+                        return `BigInt("${match}")`;
                     } else if (match === '>>' || match === '<<') {
                         return match;
                     } else {
-                        return `BigInt(${match})`;
+                        return `BigInt("${match}")`;
                     }
                 });
 
