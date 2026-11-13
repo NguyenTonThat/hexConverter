@@ -18,7 +18,7 @@
         .calculator {
             overflow-x: auto;
             /* Enable horizontal scrolling */
-            max-width: 700px;
+            max-width: 1000px;
             width: 100%;
             /* Set your desired maximum width */
             display: flex;
@@ -217,6 +217,321 @@
             background-color: yellow;
             /* Change this to the desired highlight color */
         }
+
+        .field-editor {
+            flex: 1;
+            width: 100%;
+            margin-right: 5px;
+            border: 2px solid orange;
+            border-radius: 5px;
+            padding: 5px;
+            box-sizing: border-box;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .field-head,
+        .field-row {
+            display: grid;
+            grid-template-columns: 70px 60px 60px 60px 1fr 28px;
+            gap: 6px;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .field-head {
+            color: orange;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .field-row {
+            margin-bottom: 4px;
+        }
+
+        .field-row input,
+        .field-row select {
+            font-family: Courier, monospace;
+            font-size: 14px;
+            border: 1px solid orange;
+            border-radius: 3px;
+            padding: 2px 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .field-row .f-width {
+            color: orange;
+            font-size: 12px;
+        }
+
+        .field-row .f-del {
+            border: none;
+            background: transparent;
+            color: red;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .field-add {
+            margin-top: 4px;
+            padding: 4px 10px;
+            background-color: blue;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .field-grid {
+            border-collapse: collapse;
+            font-size: 11px;
+            margin: 0;
+            display: block;
+            width: max-content;
+            user-select: none;
+        }
+
+        .field-grid th,
+        .field-grid td {
+            border: 1px solid #bbb;
+            text-align: center;
+            padding: 0;
+            height: 26px;
+            min-width: 23px;
+            width: 23px;
+        }
+
+        /* Keep the byte and bit-number header rows visible while scrolling the DW rows */
+        .field-grid tr:nth-child(-n+2) th,
+        .field-grid tr:nth-child(-n+2) td {
+            position: sticky;
+            top: 0;
+            background: #d9d9d9;
+            z-index: 2;
+        }
+
+        .field-grid tr:nth-child(2) th,
+        .field-grid tr:nth-child(2) td {
+            top: 22px;
+        }
+
+        .field-grid .g-byte {
+            font-weight: bold;
+            text-align: center;
+            font-size: 8px;
+        }
+
+        /* Bold lines between bytes */
+        .field-grid .bold-l {
+            border-left: 2px solid #000 !important;
+        }
+
+        .field-grid .bold-r {
+            border-right: 2px solid #000 !important;
+        }
+
+        /* Inside a field the byte lines are hidden until the field is hovered, then shown dashed */
+        .field-grid .g-field.bold-l {
+            border-left: none !important;
+        }
+
+        .field-grid .g-field.bold-r {
+            border-right: none !important;
+        }
+
+        .field-grid .g-field.field-hot.bold-l {
+            border-left: 2px dashed #000 !important;
+        }
+
+        .field-grid .g-field.field-hot.bold-r {
+            border-right: 2px dashed #000 !important;
+        }
+
+        .field-grid .g-hdr {
+            font-size: 10px;
+            padding: 0;
+            color: #444;
+            background: #d9d9d9;
+        }
+
+        .field-grid .g-row {
+            width: auto;
+            min-width: 100px;
+            white-space: nowrap;
+            font-size: 10px;
+            font-weight: bold;
+            background: #d9d9d9;
+            text-align: left;
+            padding-left: 3px;
+        }
+
+        .field-grid .g-off {
+            background: repeating-linear-gradient(45deg, #f2f2f2, #f2f2f2 3px, #e0e0e0 3px, #e0e0e0 6px);
+        }
+
+        .field-grid .g-bit {
+            cursor: pointer;
+        }
+
+        .field-grid .g-bit.g-sel {
+            background: #ffe9a8;
+        }
+
+        .field-grid .g-field.g-sel {
+            background: #ffe9a8;
+        }
+
+        .field-grid .g-field {
+            background: #c8f7c5;
+            font-size: 12px;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            width: auto;
+            min-width: 0;
+        }
+
+        /* Blue box around each DW block of the Binary table */
+        .field-menu {
+            position: fixed;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            min-width: 160px;
+            background: #fff;
+            border: 1px solid #999;
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            padding: 4px;
+            font-family: Courier, monospace;
+        }
+
+        .field-menu .fm-title {
+            font-size: 12px;
+            color: orange;
+            padding: 4px 6px;
+        }
+
+        .field-menu button {
+            text-align: left;
+            padding: 8px 10px;
+            font-family: Courier, monospace;
+            font-size: 14px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .field-menu button:hover {
+            background: #eee;
+        }
+
+        /* Decimal / Hexadecimal / Binary share one grid: label | value | copy */
+        .out-grid {
+            display: grid;
+            grid-template-columns: 120px 398px 70px;
+            align-items: start;
+            row-gap: 6px;
+        }
+
+        .out-label {
+            font-family: Courier, monospace;
+            font-weight: bold;
+        }
+
+        .out-grid .copy-btn {
+            margin-left: 0;
+        }
+
+        .out-binary-label {
+            margin-top: 6px;
+        }
+
+        .out-value {
+            text-align: left;
+            font-family: Courier, monospace;
+        }
+
+        .copy-btn {
+            margin-left: 6px;
+            padding: 1px 6px;
+            font-size: 11px;
+            font-family: Courier, monospace;
+            background-color: #eee;
+            border: 1px solid #999;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        /* Shared label column: Decimal, Hexadecimal and Binary start at the same x */
+        .dh-table th,
+        .bin-label {
+            width: 120px;
+            min-width: 120px;
+            text-align: left;
+            vertical-align: top;
+            font-family: Courier, monospace;
+            font-weight: bold;
+        }
+
+        .bin-row {
+            display: flex;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .copy-col {
+            width: 70px;
+            min-width: 70px;
+            margin-top: 6px;
+            margin-left: auto;
+            margin-right: -4px;
+        }
+
+        .copy-col .copy-btn {
+            margin-left: 0;
+        }
+
+        .dh-table {
+            width: 100%;
+        }
+
+        .dh-table td:last-child {
+            width: 70px;
+            text-align: left;
+        }
+
+        .bin-label {
+            margin-top: 6px;
+        }
+
+        .dw-box {
+            display: block;
+            width: fit-content;
+            border: 2px solid #3aa0e0;
+            padding: 2px 4px;
+            margin: 0;
+        }
+
+        .dw-box table {
+            margin-top: 0;
+            table-layout: fixed;
+            width: 384px;
+        }
+
+        .dw-box th {
+            text-align: left;
+        }
+
+        .field-size {
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .field-hint {
+            color: orange;
+            font-size: 11px;
+            margin-top: 4px;
+        }
     </style>
 </head>
 
@@ -230,8 +545,14 @@
         <div style="padding: 8px;"></div>
         <div style="display: flex; align-items: center;width: 100%;">
 
-            <div id="input_field" rows="1" style="margin-right: 5px;flex: 1;width: 100%;" class="input-field"
-                contenteditable="true"></div>
+            <div id="field_editor" class="field-editor">
+                <div class="field-size">Size:
+                    <select id="dw_count" onchange="setDwCount(this.value)"></select>
+                    <button class="copy-btn" onclick="clearFields()">Clear all</button>
+                </div>
+                <table id="field_grid" class="field-grid"></table>
+                <div class="field-hint">Click a bit for the start, then another for the end. Right-click (or press and hold) a field for Rename, Set value or Delete. Esc cancels.</div>
+            </div>
             <div style="display: flex; flex-direction: column;">
 
                 <button
@@ -249,136 +570,19 @@
         <button class="button-label" onclick="calculateSum();">Fields</button>
 
         <div class="output">
-            <table>
-                <tr>
-                    <th>Decimal</th>
-                    <td id="decimalResult">0</td>
-                </tr>
-                <tr>
-                    <th>Hexadecimal</th>
-                    <td id="hexResult">0x0000_0000_0000_0000</td>
+            <div class="out-grid">
+                <div class="out-label">Decimal</div>
+                <div class="out-value" id="decimalResult">0</div>
+                <div><button class="copy-btn" onclick="copyDecimal(this)">Copy</button></div>
 
-            </table>
-            <table id="binary-table">
-                <tr id="fields63_32">
-                </tr>
-                <tr>
-                    <th class="binHeader">Binary</th>
-                    <td id="bit63" class="bit" style="border-left: 2px solid black;">0</td>
-                    <td id="bit62" class="bit">0</td>
-                    <td id="bit61" class="bit">0</td>
-                    <td id="bit60" class="bit">0</td>
-                    <td id="bit59" class="bit">0</td>
-                    <td id="bit58" class="bit">0</td>
-                    <td id="bit57" class="bit">0</td>
-                    <td id="bit56" class="bit" style="border-right: 2px solid black;">0</td>
-                    <td id="bit55" class="bit">0</td>
-                    <td id="bit54" class="bit">0</td>
-                    <td id="bit53" class="bit">0</td>
-                    <td id="bit52" class="bit">0</td>
-                    <td id="bit51" class="bit">0</td>
-                    <td id="bit50" class="bit">0</td>
-                    <td id="bit49" class="bit">0</td>
-                    <td id="bit48" class="bit" style="border-right: 2px solid black;">0</td>
-                    <td id="bit47" class="bit">0</td>
-                    <td id="bit46" class="bit">0</td>
-                    <td id="bit45" class="bit">0</td>
-                    <td id="bit44" class="bit">0</td>
-                    <td id="bit43" class="bit">0</td>
-                    <td id="bit42" class="bit">0</td>
-                    <td id="bit41" class="bit">0</td>
-                    <td id="bit40" class="bit" style="border-right: 2px solid black;">0</td>
-                    <td id="bit39" class="bit">0</td>
-                    <td id="bit38" class="bit">0</td>
-                    <td id="bit37" class="bit">0</td>
-                    <td id="bit36" class="bit">0</td>
-                    <td id="bit35" class="bit">0</td>
-                    <td id="bit34" class="bit">0</td>
-                    <td id="bit33" class="bit">0</td>
-                    <td id="bit32" class="bit" style="border-right: 2px solid black;">0</td>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td colspan="7" style="border-left: 2px solid black;" class="bitPosition">63</td>
-                    <td colspan="1" style="border-right: 2px solid black;" class="bitPosition">56</td>
-                    <td colspan="7" style="border-left: 2px solid black;" class="bitPosition">55</td>
-                    <td colspan="1" style="border-right: 2px solid black;" class="bitPosition">48</td>
-                    <td colspan="7" style="border-left: 2px solid black;" class="bitPosition">47</td>
-                    <td colspan="1" style="border-right: 2px solid black;" class="bitPosition">42</td>
-                    <td colspan="7" style="border-left: 2px solid black;" class="bitPosition">41</td>
-                    <td colspan="1" style="border-right: 2px solid black;" class="bitPosition">32</td>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td colspan="8" class="group">Byte7</td>
-                    <td colspan="8" class="group">Byte6</td>
-                    <td colspan="8" class="group">Byte5</td>
-                    <td colspan="8" class="group">Byte4</td>
-                </tr>
-                <tr>
-                    <!-- <td colspan="2" style="height: 20px;"> </td> -->
-                    <td style="height: 20px"></td>
-                </tr>
-                <tr id="fields31_0">
-                    <th class="binHeader"></th>
-                </tr>
-                <tr>
-                    <th class="binHeader"></th>
-                    <td id="bit31" class="bit" style="border-left: 2px solid black;">0</td>
-                    <td id="bit30" class="bit">0</td>
-                    <td id="bit29" class="bit">0</td>
-                    <td id="bit28" class="bit">0</td>
-                    <td id="bit27" class="bit">0</td>
-                    <td id="bit26" class="bit">0</td>
-                    <td id="bit25" class="bit">0</td>
-                    <td id="bit24" class="bit" style="border-right: 2px solid black;">0</td>
-                    <td id="bit23" class="bit">0</td>
-                    <td id="bit22" class="bit">0</td>
-                    <td id="bit21" class="bit">0</td>
-                    <td id="bit20" class="bit">0</td>
-                    <td id="bit19" class="bit">0</td>
-                    <td id="bit18" class="bit">0</td>
-                    <td id="bit17" class="bit">0</td>
-                    <td id="bit16" class="bit" style="border-right: 2px solid black;">0</td>
-                    <td id="bit15" class="bit">0</td>
-                    <td id="bit14" class="bit">0</td>
-                    <td id="bit13" class="bit">0</td>
-                    <td id="bit12" class="bit">0</td>
-                    <td id="bit11" class="bit">0</td>
-                    <td id="bit10" class="bit">0</td>
-                    <td id="bit9" class="bit">0</td>
-                    <td id="bit8" class="bit" style="border-right: 2px solid black;">0</td>
-                    <td id="bit7" class="bit">0</td>
-                    <td id="bit6" class="bit">0</td>
-                    <td id="bit5" class="bit">0</td>
-                    <td id="bit4" class="bit">0</td>
-                    <td id="bit3" class="bit">0</td>
-                    <td id="bit2" class="bit">0</td>
-                    <td id="bit1" class="bit">0</td>
-                    <td id="bit0" class="bit" style="border-right: 2px solid black;">0</td>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td colspan="7" style="border-left: 2px solid black;" class="bitPosition">31</td>
-                    <td colspan="1" style="border-right: 2px solid black;" class="bitPosition">24</td>
-                    <td colspan="7" style="border-left: 2px solid black;" class="bitPosition">23</td>
-                    <td colspan="1" style="border-right: 2px solid black;" class="bitPosition">16</td>
-                    <td colspan="7" style="border-left: 2px solid black;" class="bitPosition">15</td>
-                    <td colspan="1" style="border-right: 2px solid black;" class="bitPosition">8</td>
-                    <td colspan="7" style="border-left: 2px solid black;" class="bitPosition">7</td>
-                    <td colspan="1" style="border-right: 2px solid black;" class="bitPosition">0</td>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td colspan="8" class="group">Byte3</td>
-                    <td colspan="8" class="group">Byte2</td>
-                    <td colspan="8" class="group">Byte1</td>
-                    <td colspan="8" class="group">Byte0</td>
-                </tr>
-                <tr>
-                    <td style="height: 20px"></td>
-                </tr>
-            </table>
+                <div class="out-label">Hexadecimal</div>
+                <div class="out-value" id="hexResult">0000_0000_0000_0000</div>
+                <div><button class="copy-btn" onclick="copyHex(this)">Copy</button></div>
+
+                <div class="out-label out-binary-label">Binary</div>
+                <div class="out-value" id="binary-table"></div>
+                <div><button class="copy-btn" onclick="copyBinary(this)">Copy</button></div>
+            </div>
         </div>
     </div>
     <div class="popup-form" id="popupForm" style="align-items: center;">
@@ -393,11 +597,11 @@
             highlightFields();
         } else {
             const inputElement = document.getElementById('input_expression');
-            const fieldElement = document.getElementById('input_field');
+            const fieldElement = document.getElementById('field_editor');
             inputElement.addEventListener("blur", function () {
                 calculateSum();
             });
-            fieldElement.addEventListener("blur", function () {
+            fieldElement.addEventListener("focusout", function () {
                 calculateSum();
             });
         }
@@ -412,70 +616,447 @@
             });
         }
 
-        function highlightFields() {
-            const textOutput = document.getElementById("input_field");
+        // Field definitions from the grid: { msb, lsb, name }, absolute bit numbers 0..63
+        var fieldDefs = [];
+        var pendingStart = null;
+        var dwCount = 2;
+        function clearFields() {
+            if (fieldDefs.length === 0) return;
+            if (!confirm(`Remove all ${fieldDefs.length} field(s)?`)) return;
+            fieldDefs = [];
+            renderFieldGrid();
+            calculateSum();
+        }
 
-            textOutput.addEventListener("mousemove", highlightLine);
+        function rowsList() {
+            // DW row indexes for the current size (0..dwCount-1)
+            return Array.from({ length: dwCount }, (_, i) => i);
+        }
 
-            function highlightAndGetBitfield(fieldId) {
-                const allElements = document.querySelectorAll(`[id="${fieldId}"]`);
-                let fieldVal = ""
-                allElements.forEach((ele, idx) => {
-                    ele.style.backgroundColor = 'yellow';
-                    fieldVal = ele.innerText;
-                });
-                return fieldVal;
+        function totalBits() {
+            return dwCount * 32;
+        }
+
+        function setDwCount(value) {
+            const n = parseInt(value, 10);
+            const limit = n * 32;   // bits kept
+            const removed = fieldDefs.filter(fd => fd.msb >= limit);
+            if (removed.length > 0 && !confirm(`Reducing to ${n} DW removes ${removed.length} field(s) outside bits ${limit - 1}:0. Continue?`)) {
+                document.getElementById("dw_count").value = String(dwCount);
+                return;
             }
+            fieldDefs = fieldDefs.flatMap(fd => {
+                if (fd.lsb >= limit) return [];
+                return [{ msb: Math.min(fd.msb, limit - 1), lsb: fd.lsb, name: fd.name }];
+            });
+            dwCount = n;
+            buildBinaryTable();
+            renderFieldGrid();
+            calculateSum();
+        }
 
-            function deemphasizeBitfield(fieldId) {
-                const allElements = document.querySelectorAll(`[id="${fieldId}"]`);
-                allElements.forEach((ele, idx) => {
-                    ele.style.backgroundColor = '';
-                });
-
-            }
-
-
-
-            function highlightLine(event) {
-                function getCurrentCursorLineIndex() {
-                    const selection = window.getSelection();
-                    if (selection && selection.anchorNode) {
-                        const cursorLine = selection.anchorNode.parentElement;
-                        return Array.from(cursorLine.parentElement.children).indexOf(cursorLine);
-                    }
-                    return -1;
+        function buildBinaryTable() {
+            // Binary / bit-position / byte-group rows for each DW, highest DW first (fields row above each binary row)
+            let html = "";
+            for (let dw = dwCount - 1; dw >= 0; dw--) {
+                const base = dw * 32;
+                // Fixed column widths so every DW box is the same size
+                const cols = '<col style="width:12px">'.repeat(32);
+                html += `<div class="dw-box"><table><colgroup>${cols}</colgroup>`;
+                html += `<tr id="fields${dw}"></tr>`;
+                html += "<tr>";
+                for (let k = 31; k >= 0; k--) {
+                    const n = base + k;
+                    const style = (n % 8 === 7) ? ' style="border-left: 2px solid black;"'
+                                : (n % 8 === 0) ? ' style="border-right: 2px solid black;"' : "";
+                    html += `<td id="bit${n}" class="bit"${style}>0</td>`;
                 }
-                const lineHeight = parseFloat(getComputedStyle(textOutput).lineHeight);
-                const mouseY = event.clientY + textOutput.scrollTop - textOutput.getBoundingClientRect().top;
-                const hoveredLineIndex = Math.floor(mouseY / lineHeight);
-                const currentScrollTop = textOutput.scrollTop;
-                const cursorIndex = getCurrentCursorLineIndex();
-                const cursorOffset = window.getSelection().focusOffset;
-                const lines = textOutput.innerText.split('\n');
-                textOutput.innerHTML = lines.map((line, index) => {
-                    if (index === hoveredLineIndex) {
-                        const fieldVal = highlightAndGetBitfield(`BitField${index}`);
-                        return `<div class="highlighted-line" title="${fieldVal}"">${line}</div>`;
+                html += "</tr><tr>";
+                for (let byte = dw * 4 + 3; byte >= dw * 4; byte--) {
+                    html += `<td colspan="7" class="bitPosition" style="border-left: 2px solid black;">${byte * 8 + 7}</td>`;
+                    html += `<td colspan="1" class="bitPosition" style="border-right: 2px solid black;">${byte * 8}</td>`;
+                }
+                html += "</tr><tr>";
+                for (let byte = dw * 4 + 3; byte >= dw * 4; byte--) {
+                    html += `<td colspan="8" class="group">Byte${byte}</td>`;
+                }
+                html += "</tr></table></div>";
+            }
+            document.getElementById("binary-table").innerHTML = html;
+        }
+        function overlapsExisting(lo, hi) {
+            return fieldDefs.some(fd => !(hi < fd.lsb || lo > fd.msb));
+        }
+
+        function renderFieldGrid() {
+            // Each DW row is 32 cells (bits 31..0 of that DW). Bold lines mark the byte boundaries.
+            const table = document.getElementById("field_grid");
+            const leftEdge = bit => (bit % 8 === 7 ? " bold-l" : "");    // high side of a byte
+            const rightEdge = bit => (bit % 8 === 0 ? " bold-r" : "");   // low side of a byte
+            let html = '<tr><th></th>';
+            for (let byte = 3; byte >= 0; byte--) html += `<th colspan="8" class="g-byte">Byte${byte}</th>`;
+            html += '</tr><tr><th></th>';
+            for (let c = 31; c >= 0; c--) html += `<th class="g-hdr${leftEdge(c)}${rightEdge(c)}">${c}</th>`;
+            html += '</tr>';
+            for (const dw of rowsList().slice().reverse()) {
+                const base = dw * 32;
+                html += `<tr><th class="g-row">DW${dw} (Byte ${dw * 4 + 3}-${dw * 4})</th>`;
+                let k = 31;
+                while (k >= 0) {
+                    const a = base + k;   // absolute bit of this cell
+                    // A field piece starts here if its upper bit (inside this row) is this cell
+                    const fi = fieldDefs.findIndex(fd =>
+                        fd.lsb <= base + 31 && fd.msb >= base && Math.min(fd.msb, base + 31) === a);
+                    if (fi >= 0) {
+                        const fd = fieldDefs[fi];
+                        const lowLocal = Math.max(fd.lsb, base) - base;
+                        // Split the field at byte boundaries so the bold lines show through it
+                        let hi = k;
+                        let first = true;
+                        while (hi >= lowLocal) {
+                            const lo = Math.max(Math.floor(hi / 8) * 8, lowLocal);
+                            html += `<td class="g-field${leftEdge(hi)}${rightEdge(lo)}" colspan="${hi - lo + 1}" data-field="${fi}" data-top="${base + hi}" title="${fd.name} [${fd.msb}:${fd.lsb}]">${first ? fd.name : ""}</td>`;
+                            first = false;
+                            hi = lo - 1;
+                        }
+                        k = lowLocal - 1;
                     } else {
-                        deemphasizeBitfield(`BitField${index}`);
-                        return `<div>${line}</div>`;
+                        html += `<td class="g-bit${leftEdge(k)}${rightEdge(k)}" data-dw="${dw}" data-bit="${k}"></td>`;
+                        k--;
                     }
-                }).join('');
-                // Restore the scroll position
-                textOutput.scrollTop = currentScrollTop;
-
-                // Restore the cursor position within the hovered line
-                const restoredLine = lines[cursorIndex];
-                if (restoredLine && cursorOffset <= restoredLine.length) {
-                    const newRange = document.createRange();
-                    const newSelection = window.getSelection();
-                    newRange.setStart(textOutput.childNodes[cursorIndex].firstChild, cursorOffset);
-                    newSelection.removeAllRanges();
-                    newSelection.addRange(newRange);
                 }
-
+                html += '</tr>';
             }
+            table.innerHTML = html;
+        }
+        function copyText(text, btn) {
+            const done = () => {
+                const old = btn.textContent;
+                btn.textContent = "Copied";
+                setTimeout(() => { btn.textContent = old; }, 1000);
+            };
+            const fallback = () => {
+                const ta = document.createElement("textarea");
+                ta.value = text;
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand("copy"); } catch (e) { }
+                ta.remove();
+                done();
+            };
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(done, fallback);
+            } else {
+                fallback();
+            }
+        }
+
+        function copyDecimal(btn) {
+            copyText(document.getElementById("decimalResult").textContent.replace(/,/g, ""), btn);
+        }
+
+        function copyHex(btn) {
+            copyText(document.getElementById("hexResult").innerText, btn);
+        }
+
+        function copyBinary(btn) {
+            // Highest DW first; bits high to low, with an underscore between bytes
+            let bits = "";
+            for (let dw = dwCount - 1; dw >= 0; dw--) {
+                for (let k = 31; k >= 0; k--) {
+                    bits += document.getElementById(`bit${dw * 32 + k}`).innerText.trim();
+                }
+            }
+            copyText("0b" + bits.replace(/(\d{8})(?=\d)/g, "$1_"), btn);
+        }
+
+        var menuOpenedAt = 0;
+        var suppressClick = false;
+
+        function renameField(fi) {
+            const fd = fieldDefs[fi];
+            if (!fd) return;
+            const name = prompt(`Rename ${fd.name} ${bitInfo(fd.msb, fd.lsb)} (blank deletes):`, fd.name);
+            if (name === null) return;
+            if (name.trim() === "") fieldDefs.splice(fi, 1);
+            else fd.name = name.trim().replace(/\s+/g, "_");
+            renderFieldGrid();
+            calculateSum();
+        }
+
+        function deleteField(fi) {
+            const fd = fieldDefs[fi];
+            if (!fd) return;
+            if (!confirm(`Delete ${fd.name} ${bitInfo(fd.msb, fd.lsb)}? Are you sure?`)) return;
+            fieldDefs.splice(fi, 1);
+            renderFieldGrid();
+            calculateSum();
+        }
+
+        function openFieldMenu(fi, x, y) {
+            const fd = fieldDefs[fi];
+            if (!fd) return;
+            const menu = document.getElementById("field_menu");
+            menu.dataset.field = String(fi);
+            menu.querySelector(".fm-title").textContent = `${fd.name} ${bitInfo(fd.msb, fd.lsb)}`;
+            menu.style.left = `${Math.max(0, Math.min(x, window.innerWidth - 180))}px`;
+            menu.style.top = `${Math.max(0, Math.min(y, window.innerHeight - 160))}px`;
+            menu.style.display = "block";
+            menuOpenedAt = Date.now();
+        }
+
+        function closeFieldMenu() {
+            document.getElementById("field_menu").style.display = "none";
+        }
+
+        function menuAction(action) {
+            const fi = parseInt(document.getElementById("field_menu").dataset.field, 10);
+            closeFieldMenu();
+            if (action === "rename") renameField(fi);
+            else if (action === "value") editFieldValue(fi);
+            else if (action === "delete") deleteField(fi);
+        }
+
+        function editFieldValue(idx) {
+            // Set one field's value from the Binary table. Input: decimal, 0x hex or 0b binary.
+            const fd = fieldDefs[idx];
+            if (!fd) return;
+            const width = fd.msb - fd.lsb + 1;
+            const cur = BigInt(document.getElementById("decimalResult").textContent.replace(/,/g, ""));
+            const mask = ((1n << BigInt(width)) - 1n) << BigInt(fd.lsb);
+            const curField = (cur & mask) >> BigInt(fd.lsb);
+            const input = prompt(`${fd.name} ${bitInfo(fd.msb, fd.lsb)} (${width} bits). Enter decimal, 0x hex or 0b binary:`, curField.toString());
+            if (input === null) return;
+            if (input.trim() === "") return;
+            let v;
+            try {
+                v = BigInt(input.trim().replace(/_/g, ""));
+            } catch (e) {
+                alert("Invalid value.");
+                return;
+            }
+            const max = (1n << BigInt(width)) - 1n;
+            if (v < 0n || v > max) {
+                alert(`Value must be 0 to ${max} for a ${width}-bit field.`);
+                return;
+            }
+            const next = (cur & ~mask) | (v << BigInt(fd.lsb));
+            // Expression follows the new value; the outputs are recalculated from it
+            const hexDigits = next.toString(16);
+            document.getElementById("input_expression").value =
+                "0x" + hexDigits.padStart(Math.ceil(hexDigits.length / 4) * 4, "0").replace(/(?<=\w)(?=(\w{4})+$)/g, "_");
+            calculateSum();
+        }
+
+        function nextFieldName() {
+            // Next unused FieldN, so a new field never reuses an existing name
+            const used = new Set(fieldDefs.map(fd => fd.name));
+            let n = 1;
+            while (used.has(`Field${n}`)) n++;
+            return `Field${n}`;
+        }
+
+        function bitInfo(msb, lsb) {
+            // e.g. "DW3 bit[100:96]"; DW index is the bit position divided by 32
+            const dwHi = Math.floor(msb / 32), dwLo = Math.floor(lsb / 32);
+            const dwText = dwHi === dwLo ? `DW${dwHi}` : `DW${dwHi}-DW${dwLo}`;
+            return `${dwText} bit[${msb}:${lsb}]`;
+        }
+
+        function absBit(td) {
+            // Absolute bit (0..63) of a grid cell: DW1 cells are 32..63, DW0 cells are 0..31
+            return parseInt(td.dataset.dw, 10) * 32 + parseInt(td.dataset.bit, 10);
+        }
+
+        function markSelection(pieces) {
+            // pieces: [{lo, hi, dws}] absolute bit ranges; highlight the matching cells (null clears)
+            document.querySelectorAll('#field_grid .g-sel').forEach(td => td.classList.remove('g-sel'));
+            if (!pieces) return;
+            document.querySelectorAll('#field_grid .g-bit').forEach(td => {
+                const a = absBit(td);
+                const dw = parseInt(td.dataset.dw, 10);
+                if (pieces.some(pc => a >= pc.lo && a <= pc.hi && pc.dws.includes(dw))) td.classList.add('g-sel');
+            });
+            document.querySelectorAll('#field_grid .g-field').forEach(td => {
+                const top = parseInt(td.dataset.top, 10);
+                const bottom = top - parseInt(td.getAttribute('colspan'), 10) + 1;
+                const dw = Math.floor(top / 32);
+                if (pieces.some(pc => !(bottom > pc.hi || top < pc.lo) && pc.dws.includes(dw))) td.classList.add('g-sel');
+            });
+        }
+
+        function markPendingStart(cell) {
+            // Highlight only the clicked cell (cell = null clears the highlight)
+            document.querySelectorAll('#field_grid .g-sel').forEach(td => td.classList.remove('g-sel'));
+            if (cell) cell.classList.add('g-sel');
+        }
+
+        function initFieldEditor() {
+            fieldDefs = [];
+            const sizeSel = document.getElementById("dw_count");
+            for (let n = 1; n <= 32; n++) sizeSel.add(new Option(`${n} DW (${n * 4} bytes)`, String(n)));
+            sizeSel.value = String(dwCount);
+            buildBinaryTable();
+            renderFieldGrid();
+
+            const table = document.getElementById("field_grid");
+
+            // Absolute bit under a click. A field span runs from its top bit down, so the offset inside the span gives the bit.
+            function bitFromEvent(cell, e) {
+                if (cell.classList.contains('g-bit')) return absBit(cell);
+                const span = parseInt(cell.getAttribute('colspan'), 10);
+                const rect = cell.getBoundingClientRect();
+                const idx = Math.min(span - 1, Math.max(0, Math.floor((e.clientX - rect.left) / (rect.width / span))));
+                return parseInt(cell.dataset.top, 10) - idx;
+            }
+
+            function pickBit(abs, cell) {
+                if (pendingStart === null) {
+                    // First click: start bit
+                    pendingStart = abs;
+                    markPendingStart(cell);
+                    return;
+                }
+                // Second click: end bit. Select the bits between the two clicked bits.
+                const lo = Math.min(pendingStart, abs);
+                const hi = Math.max(pendingStart, abs);
+                pendingStart = null;
+                markSelection([{ lo, hi, dws: rowsList() }]);
+                requestAnimationFrame(() => requestAnimationFrame(() => {
+                    const overlaps = fieldDefs.filter(fd => !(hi < fd.lsb || lo > fd.msb));
+                    if (overlaps.length > 0) {
+                        const names = overlaps.map(fd => `${fd.name} [${fd.msb}:${fd.lsb}]`).join(", ");
+                        if (!confirm(`Bits ${hi}:${lo} overlap ${names}.\nReduce them and add a new field?`)) {
+                            markSelection(null);
+                            return;
+                        }
+                    }
+                    const name = prompt(`Field name (${bitInfo(hi, lo)}):`, nextFieldName());
+                    markSelection(null);
+                    if (name === null || name.trim() === "") return;
+                    // Remove bits lo..hi from any overlapping field (a field may be split in two)
+                    fieldDefs = fieldDefs.flatMap(fd => {
+                        if (hi < fd.lsb || lo > fd.msb) return [fd];
+                        const pieces = [];
+                        if (fd.lsb < lo) pieces.push({ msb: Math.min(fd.msb, lo - 1), lsb: fd.lsb, name: fd.name });
+                        if (fd.msb > hi) pieces.push({ msb: fd.msb, lsb: Math.max(fd.lsb, hi + 1), name: fd.name });
+                        return pieces;
+                    });
+                    fieldDefs.push({ msb: hi, lsb: lo, name: name.trim().replace(/\s+/g, "_") });
+                    renderFieldGrid();
+                    calculateSum();
+                }));
+            }
+
+            table.addEventListener("click", e => {
+                const cell = e.target.closest('.g-bit, .g-field');
+                if (!cell) return;
+                pickBit(bitFromEvent(cell, e), cell);
+            });
+
+            table.addEventListener("contextmenu", e => {
+                const fieldCell = e.target.closest('.g-field');
+                if (!fieldCell) return;
+                e.preventDefault();
+                openFieldMenu(parseInt(fieldCell.dataset.field, 10), e.clientX, e.clientY);
+            });
+
+            // Click a field in the Binary table to edit its value
+            document.getElementById("binary-table").addEventListener("click", e => {
+                const cell = e.target.closest(".fieldInfo");
+                if (!cell) return;
+                const idx = parseInt(cell.id.replace("BitField", ""), 10);
+                if (Number.isNaN(idx)) return;
+                editFieldValue(idx);
+            });
+
+            // Hovering a field shows its byte lines dashed across all of its segments
+            const setFieldHot = fi => {
+                document.querySelectorAll("#field_grid .field-hot").forEach(el => el.classList.remove("field-hot"));
+                if (fi !== null) {
+                    document.querySelectorAll(`#field_grid .g-field[data-field="${fi}"]`)
+                        .forEach(el => el.classList.add("field-hot"));
+                }
+            };
+            table.addEventListener("mouseover", e => {
+                const f = e.target.closest(".g-field");
+                setFieldHot(f ? f.dataset.field : null);
+            });
+            table.addEventListener("mouseleave", () => setFieldHot(null));
+
+            document.addEventListener("keydown", e => {
+                if (e.key === "Escape") {
+                    if (pendingStart !== null) {
+                        pendingStart = null;
+                        markPendingStart(null);
+                    }
+                    closeFieldMenu();
+                }
+            });
+
+            // Field menu: a field's menu also opens from the Binary table
+            const menu = document.createElement("div");
+            menu.id = "field_menu";
+            menu.className = "field-menu";
+            menu.style.display = "none";
+            menu.innerHTML = `<div class="fm-title"></div>
+                <button onclick="menuAction('rename')">Rename</button>
+                <button onclick="menuAction('value')">Set value</button>
+                <button onclick="menuAction('delete')">Delete</button>`;
+            document.body.appendChild(menu);
+
+            document.getElementById("binary-table").addEventListener("contextmenu", e => {
+                const cell = e.target.closest(".fieldInfo");
+                if (!cell) return;
+                const idx = parseInt(cell.id.replace("BitField", ""), 10);
+                if (Number.isNaN(idx)) return;
+                e.preventDefault();
+                openFieldMenu(idx, e.clientX, e.clientY);
+            });
+
+            // Mobile: press and hold a field for about half a second to open the menu
+            let pressTimer = null;
+            const fieldIndexOf = cell => {
+                const idx = cell.classList.contains("g-field")
+                    ? parseInt(cell.dataset.field, 10)
+                    : parseInt(cell.id.replace("BitField", ""), 10);
+                return Number.isNaN(idx) ? null : idx;
+            };
+            document.addEventListener("touchstart", e => {
+                const cell = e.target.closest(".g-field, .fieldInfo");
+                if (!cell || fieldIndexOf(cell) === null) return;
+                const t = e.touches[0];
+                clearTimeout(pressTimer);
+                pressTimer = setTimeout(() => {
+                    suppressClick = true;   // the tap that ends the press must not also act as a click
+                    openFieldMenu(fieldIndexOf(cell), t.clientX, t.clientY);
+                }, 500);
+            }, { passive: true });
+            const cancelPress = () => { clearTimeout(pressTimer); pressTimer = null; };
+            document.addEventListener("touchmove", cancelPress, { passive: true });
+            document.addEventListener("touchcancel", cancelPress, { passive: true });
+            document.addEventListener("touchend", () => {
+                cancelPress();
+                if (suppressClick) setTimeout(() => { suppressClick = false; }, 350);
+            }, { passive: true });
+
+            // Capture phase: swallow the click after a long press, and close the menu on an outside click
+            document.addEventListener("click", e => {
+                if (suppressClick) {
+                    suppressClick = false;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+                if (document.getElementById("field_menu").style.display === "block" &&
+                    !e.target.closest("#field_menu") && Date.now() - menuOpenedAt > 300) {
+                    closeFieldMenu();
+                }
+            }, true);
+        }
+
+        function highlightFields() {
+            // Grid interactions are attached in initFieldEditor()
         }
 
         function dragForm() {
@@ -672,162 +1253,36 @@
         }
 
         function removeFields() {
-            let fieldsRow = document.getElementById("fields63_32");
-            // Remove all existing td elements from the row
-            while (fieldsRow.firstChild) {
-                fieldsRow.removeChild(fieldsRow.firstChild);
+            // Clear the field cells in every DW row; keep the bit cells
+            for (const dw of rowsList()) {
+                const row = document.getElementById(`fields${dw}`);
+                if (!row) continue;
+                while (row.firstChild) row.removeChild(row.firstChild);
             }
-            fieldsRow.appendChild(document.createElement("th"));
-            fieldsRow = document.getElementById("fields31_0");
-            // Remove all existing td elements from the row
-            while (fieldsRow.firstChild) {
-                fieldsRow.removeChild(fieldsRow.firstChild);
-            }
-            fieldsRow.appendChild(document.createElement("th"));
         }
-
         function addFields(msb, lsb, str64bit, fieldName, idx) {
-            const reverseStr64bit = str64bit.split("").reverse().join("");
-            const substringBinary = reverseStr64bit.substring(lsb, msb + 1).split("").reverse().join("");
+            const reverseStr = str64bit.split("").reverse().join("");
+            const substringBinary = reverseStr.substring(lsb, msb + 1).split("").reverse().join("");
             const hexadecimalValue = parseInt(substringBinary, 2).toString(16);
-            let fieldsRow = "";
-            let fieldSize = 0;
-            let newTd = document.createElement("td");
             const fieldContent = `${fieldName}<br><span class="field_value">${hexadecimalValue}</span>`;
-            if ((msb <= 31) && (lsb <= 31)) {
-                fieldsRow = document.getElementById("fields31_0");
-                fieldSize = msb - lsb + 1;
-                newTd.setAttribute("colspan", fieldSize);
-                newTd.className = "fieldInfo";
-                newTd.id = `BitField${idx}`;
-                newTd.innerHTML = fieldContent;
-                fieldsRow.appendChild(newTd);
-            } else if ((msb >= 32) && (lsb >= 32)) {
-                fieldsRow = document.getElementById("fields63_32");
-                fieldSize = msb - lsb + 1;
-                newTd.setAttribute("colspan", fieldSize);
-                newTd.className = "fieldInfo";
-                newTd.id = `BitField${idx}`;
-                newTd.innerHTML = fieldContent;
-                fieldsRow.appendChild(newTd);
-            } else {
-                fieldsRow = document.getElementById("fields63_32");
-                fieldSize = msb - 32 + 1;
-                newTd.setAttribute("colspan", fieldSize);
-                newTd.className = "fieldInfo";
-                newTd.id = `BitField${idx}`;
-                newTd.innerHTML = fieldContent;
-                fieldsRow.appendChild(newTd);
-
-                newTd = document.createElement("td");
-                fieldsRow = document.getElementById("fields31_0");
-                fieldSize = 31 - lsb + 1;
-                newTd.setAttribute("colspan", fieldSize);
-                newTd.className = "fieldInfo";
-                newTd.id = `BitField${idx}`;
-                newTd.innerHTML = fieldContent;
-                fieldsRow.appendChild(newTd);
-
+            // A field can cross DW boundaries: one cell per DW row it touches, highest row first
+            for (let dw = Math.floor(msb / 32); dw >= Math.floor(lsb / 32); dw--) {
+                const top = Math.min(msb, dw * 32 + 31);
+                const bottom = Math.max(lsb, dw * 32);
+                const td = document.createElement("td");
+                td.setAttribute("colspan", top - bottom + 1);
+                td.className = "fieldInfo";
+                td.id = `BitField${idx}`;
+                td.innerHTML = fieldContent;
+                document.getElementById(`fields${dw}`).appendChild(td);
             }
-
         }
-
         function getFields() {
-            const inputElement = document.getElementById('input_field');
-            inputVal = inputElement.innerText;
             const myfieldDict = {};
-            let idxCnt;
-            inputVal.split(/\n/).forEach((text, idx) => {
-                text = text.replace(/\s+[-:]\s+\w[^;]+$/, ""); //Remove comment
-                let regex = /^\s*(\d+)\s*[:-]\s*(\d+)[\s\|]+(.*)/;
-                if (regex.test(text)) {
-                    const val1 = parseInt(RegExp.$1);
-                    const val2 = parseInt(RegExp.$2);
-                    const fieldName = RegExp.$3.replace(/[-]+/g, "_");
-                    const msbVal = Math.max(val1, val2);
-                    const lsbPos = Math.min(val1, val2);
-                    myfieldDict[msbVal] = {};
-                    myfieldDict[msbVal]["lsbPos"] = lsbPos;
-                    myfieldDict[msbVal]["fieldName"] = fieldName;
-                    myfieldDict[msbVal]["idx"] = idx;
-                    return;
-                }
-                regex = /^\s*(\d+)[\s|]+([\w ]+)\b/;
-                if (regex.test(text)) {
-                    const val1 = parseInt(RegExp.$1);
-                    const fieldName = RegExp.$2;
-                    myfieldDict[val1] = {};
-                    myfieldDict[val1]["lsbPos"] = val1;
-                    myfieldDict[val1]["fieldName"] = fieldName;
-                    myfieldDict[val1]["idx"] = idx;
-                    return;
-
-                }
-                regex = /(\bchar\b|\buint8_t\b|\bsigned char\b|\bint8_t\b|\bunsigned short\b|\buint16_t\b|\bshort\b|\bint16_t\b|\bunsigned int\b|\buint32_t\b|\bint\b|\bint32_t\b|\bunsigned long long\b|\buint64_t\b|\blong long\b|\bint64_t\b)\s+(\w+)\s*:\s*(\d+)\s*/;
-                if (regex.test(text)) {
-                    if (typeof idxCnt === "undefined") idxCnt = 0;
-                    const lsbPos = idxCnt;
-                    const size = parseInt(RegExp.$3);
-                    const msbVal = lsbPos + size - 1;
-                    const fieldName = RegExp.$2;
-                    myfieldDict[msbVal] = {};
-                    myfieldDict[msbVal]["lsbPos"] = lsbPos;
-                    myfieldDict[msbVal]["fieldName"] = fieldName;
-                    myfieldDict[msbVal]["idx"] = idx;
-                    idxCnt += size;
-                    return;
-
-                }
-                regex = /(\bbit\b|\breg\b|\blogic\b)\s*\[\s*(\d+)\s*:(\d+)\s*\]\s*(\w+)\s*/;
-                if (regex.test(text)) {
-                    if (typeof idxCnt === "undefined") idxCnt = 0;
-                    const size = Math.abs(parseInt(RegExp.$3) - parseInt(RegExp.$2)) + 1;
-                    const lsbPos = idxCnt - size;
-                    const msbVal = lsbPos + size - 1;
-                    const fieldName = RegExp.$4;
-                    myfieldDict[msbVal] = {};
-                    myfieldDict[msbVal]["lsbPos"] = lsbPos;
-                    myfieldDict[msbVal]["fieldName"] = fieldName;
-                    myfieldDict[msbVal]["idx"] = idx;
-                    idxCnt -= size;
-                    return;
-
-                }
-                regex = /^\s*(\bbit\b|\breg\b|\blogic\b|\bbyte\b|\bshortint\b|\bint\b|\blongint\b|\binteger\b)\s+(\w+)\s*/;
-                if (regex.test(text)) {
-                    if (typeof idxCnt === "undefined") idxCnt = 0;
-
-                    const numType = RegExp.$1;
-                    const size = (numType.includes("bit") || numType.includes("logic") || numType.includes("reg")) ? 1 : (
-                        numType.includes("byte") ? 8 : (
-                            numType.includes("shortint") ? 16 : (
-                                numType.includes("longint") ? 64 : 32
-                            )
-                        )
-                    );
-                    const lsbPos = idxCnt - size;
-                    const msbVal = lsbPos + size - 1;
-                    const fieldName = RegExp.$2;
-                    myfieldDict[msbVal] = {};
-                    myfieldDict[msbVal]["lsbPos"] = lsbPos;
-                    myfieldDict[msbVal]["fieldName"] = fieldName;
-                    myfieldDict[msbVal]["idx"] = idx;
-                    idxCnt -= size;
-                    return;
-
-                }
-            })
-            if (idxCnt < 0) {
-                const offset = Math.abs(idxCnt);
-                const keyLst = Object.keys(myfieldDict);
-                for (const key of keyLst) {
-                    const newKey = parseInt(key) + offset;
-                    myfieldDict[key]['lsbPos'] += offset;
-                    myfieldDict[newKey] = myfieldDict[key];
-                    delete myfieldDict[key];
-                }
-            }
-            let maxCheckedVal = 63;
+            fieldDefs.forEach((fd, idx) => {
+                myfieldDict[fd.msb] = { lsbPos: fd.lsb, fieldName: fd.name || `F${idx}`, idx: idx };
+            });
+            let maxCheckedVal = totalBits() - 1;
             let rsvCnt = 0;
             const msbLst = Object.keys(myfieldDict).sort((a, b) => b - a);
             if (msbLst.length == 0) return myfieldDict;
@@ -869,15 +1324,15 @@
                 // Convert numbers to BigInt-safe operations and handle shifts
                 inputVal = inputVal.replace(/0x[0-9A-Fa-f]+|0b[01]+|\d+|>>|<</g, (match) => {
                     if (match.startsWith('0x')) {
-                        let hexValue = match.slice(2).padStart(16, '0'); // Ensure 16 hex digits
-                        let high = parseInt(hexValue.slice(0, 8), 16);
-                         let low = parseInt(hexValue.slice(8, 16), 16);   // <-- define low here
-                        return `(BigInt(${high}) << 32n | BigInt(${low}))`;
-                    } else if (match.startsWith('0b')) {
+                        // Any length: BigInt parses the full hex string
                         return `BigInt("${match}")`;
+                    } else if (match.startsWith('0b')) {
+                        let decimalValue = parseInt(match.slice(2), 2);
+                        return `BigInt(${decimalValue})`;
                     } else if (match === '>>' || match === '<<') {
                         return match;
                     } else {
+                        // Decimal: parse as a string so a leading zero (e.g. 0123) is not read as octal
                         return `BigInt("${match}")`;
                     }
                 });
@@ -887,6 +1342,10 @@
                 // Evaluate the modified expression safely
                 const result = eval(inputVal);
                 console.log("Result: ", result);
+                if (result < 0n || result >= (1n << BigInt(totalBits()))) {
+                    alert(`Value does not fit in ${dwCount} DW (${totalBits()} bits).`);
+                    return;
+                }
 
                 // Convert result back to 64-bit hex
                 let resultHigh = Number((result >> 32n) & 0xFFFFFFFFn);
@@ -902,13 +1361,19 @@
                 const hexResultElement = document.getElementById('hexResult');
                 if (hexResultElement) {
                     // const hexStr = result.toString(16).padStart(16, '0').match(/.{1,4}/g).join('_');
-                    const hexStr = result.toString(16).padStart(16, '0').replace(/(?<=\w)(?=(\w{4})+$)/g, '_');
-                    hexResultElement.textContent = `0x${hexStr}`;
+                    // One line per 64 bits (16 hex digits), highest line first, e.g. 0000_0000_0000_0000
+                    const hexAll = result.toString(16).padStart(totalBits() / 4, '0');
+                    const lines = [];
+                    for (let end = hexAll.length; end > 0; end -= 16) {
+                        const chunk = hexAll.slice(Math.max(0, end - 16), end);
+                        lines.unshift(chunk.replace(/(?<=\w)(?=(\w{4})+$)/g, '_'));
+                    }
+                    hexResultElement.innerHTML = lines.join('<br>');
                 } else {
                     console.error("Element with ID 'hexResult' not found in the DOM.");
                 }
 
-                const binaryStr = result.toString(2).padStart(64, '0');
+                const binaryStr = result.toString(2).padStart(totalBits(), '0');
                 binaryStr.split('').reverse().map((val, idex) => {
                     const bitElement = document.getElementById(`bit${idex}`);
                     if (bitElement) {
@@ -936,6 +1401,7 @@
 
 
 
+        initFieldEditor();
     </script>
 </body>
 
