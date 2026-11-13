@@ -300,6 +300,16 @@
             width: 23px;
         }
 
+        /* Long press on a field opens its menu; it must not select text or show the copy callout */
+        .field-grid,
+        .field-grid *,
+        #binary-table,
+        #binary-table * {
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+
         /* Keep the byte and bit-number header rows visible while scrolling the DW rows */
         .field-grid tr:nth-child(-n+2) th,
         .field-grid tr:nth-child(-n+2) td {
