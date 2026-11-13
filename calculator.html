@@ -358,6 +358,15 @@
             border-right: 2px dashed #000 !important;
         }
 
+        /* Keep the DW labels (and the empty corner) visible when the grid is slid left/right */
+        .field-grid th.g-row,
+        .field-grid tr:nth-child(-n+2) th:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 3;
+            background: #d9d9d9;
+        }
+
         .field-grid .g-hdr {
             font-size: 10px;
             padding: 0;
@@ -367,13 +376,13 @@
 
         .field-grid .g-row {
             width: auto;
-            min-width: 100px;
+            min-width: 0;
             white-space: nowrap;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: bold;
             background: #d9d9d9;
             text-align: left;
-            padding-left: 3px;
+            padding: 0 3px;
         }
 
         .field-grid .g-off {
