@@ -384,12 +384,19 @@
             cursor: pointer;
         }
 
+        /* Bit number within its byte (7..0), shown small and grey in each cell */
+        .field-grid .bit-idx {
+            color: #999;
+            font-size: 8px;
+            pointer-events: none;
+        }
+
         .field-grid .g-bit.g-sel {
             background: #ffe9a8;
         }
 
         .field-grid .g-field.g-sel {
-            background: #ffe9a8;
+            background: #ffe9a8 !important;
         }
 
         .field-grid .g-field {
@@ -613,6 +620,7 @@
     <div class="popup-form" id="popupForm" style="align-items: center;">
         <label for="form_text_output" id="popupFormLabel"></label>
         <div id="form_text_output" class="popup-text" placeholder="Enter text"></div>
+        <button class="copy-btn" onclick="copyPopup(this)">Copy</button>
         <button onclick="closeForm()">Done</button>
     </div>
     <script>
@@ -748,13 +756,13 @@
                         let first = true;
                         while (hi >= lowLocal) {
                             const lo = Math.max(Math.floor(hi / 8) * 8, lowLocal);
-                            html += `<td class="g-field${leftEdge(hi)}${rightEdge(lo)}" colspan="${hi - lo + 1}" data-field="${fi}" data-top="${base + hi}" title="${fd.name} [${fd.msb}:${fd.lsb}]">${first ? fd.name : ""}</td>`;
+                            html += `<td class="g-field${leftEdge(hi)}${rightEdge(lo)}" style="background:${fieldColor(fi)}" colspan="${hi - lo + 1}" data-field="${fi}" data-top="${base + hi}" title="${fd.name} [${fd.msb}:${fd.lsb}]">${first ? fd.name : ""}</td>`;
                             first = false;
                             hi = lo - 1;
                         }
                         k = lowLocal - 1;
                     } else {
-                        html += `<td class="g-bit${leftEdge(k)}${rightEdge(k)}" data-dw="${dw}" data-bit="${k}"></td>`;
+                        html += `<td class="g-bit${leftEdge(k)}${rightEdge(k)}" data-dw="${dw}" data-bit="${k}"><span class="bit-idx">${k % 8}</span></td>`;
                         k--;
                     }
                 }
@@ -782,6 +790,10 @@
             } else {
                 fallback();
             }
+        }
+
+        function copyPopup(btn) {
+            copyText(document.getElementById("form_text_output").innerText, btn);
         }
 
         function copyDecimal(btn) {
@@ -887,6 +899,12 @@
             let n = 1;
             while (used.has(`Field${n}`)) n++;
             return `Field${n}`;
+        }
+
+        // Field colors: field 1 = first color, field 2 = second color, and so on
+        const FIELD_COLORS = ["#c8f7c5", "#ffd6a5", "#a0d8ef", "#f8c8dc", "#fff59d", "#d1c4e9", "#b2dfdb", "#ffccbc"];
+        function fieldColor(fi) {
+            return FIELD_COLORS[fi % FIELD_COLORS.length];
         }
 
         function bitInfo(msb, lsb) {
@@ -1305,6 +1323,7 @@
                 const td = document.createElement("td");
                 td.setAttribute("colspan", top - bottom + 1);
                 td.className = "fieldInfo";
+                td.style.backgroundColor = fieldColor(idx);
                 td.id = `BitField${idx}`;
                 td.innerHTML = fieldContent;
                 document.getElementById(`fields${dw}`).appendChild(td);
